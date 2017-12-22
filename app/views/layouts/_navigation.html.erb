@@ -1,0 +1,21 @@
+<nav class="navbar navbar-inverse navbar-fixed-top">
+  <div class="navbar-header navbar-inverse">
+    <button type="button" class="navbar-toggle collapsed pull-left" data-toggle="collapse" data-target="#mainnavbarcollapsed" aria-expanded="false">
+      <span class="glyphicon glyphicon-menu-hamburger" aria-expanded="false"></span>
+    </button>
+    <div class="collapsed-logo">
+      <a href="../..">
+        <img class="img-responsive" style="display:inline-block; height:30px; margin-top:11px;padding-right: 65px;" src="../../NavBar_Logo_30x30_T.png" alt="Logo" />
+      </a>
+    </div>
+  </div>
+  <div class="container-fluid">
+    <ul class="nav nav-justified">
+      <div class="collapse navbar-collapse" id="mainnavbarcollapsed">
+        <ul class="nav navbar-nav">
+          <%= render 'layouts/navigation_links' %>
+        </ul>
+      </div>
+    </ul>
+  </div>
+</nav>

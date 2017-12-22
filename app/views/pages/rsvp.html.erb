@@ -1,0 +1,61 @@
+<% content_for :title do %>R.S.V.P.<% end %>
+
+<div class="jumbotron">
+  <h1 class="bongsky-title">RSVP</h1>
+
+  <p class="bongsky-p">Will you be partying with us or partying from afar?</p>
+  
+  <form class="cd-form floating-labels" action="/pages/rsvp/send" method="post">
+    <fieldset>
+      <div style="text-align: center;">
+        <ul class="cd-form-list">
+          <li>
+            <input type="radio" name="attending" id="cd-radio-1">
+            <label for="cd-radio-1">I'm coming to party</label>
+          </li>
+            
+          <li>
+            <input type="radio" name="not-attending" id="cd-radio-2">
+            <label for="cd-radio-2">Unable to attend</label>
+          </li>
+        </ul>
+      </div>
+
+      <div class="icon">
+        <label class="cd-label" for="cd-name">Name</label>
+        <input class="user" type="text" name="name" id="cd-name" required>
+      </div>
+
+      <div class="icon">
+          <label class="cd-label" for="cd-email">Email</label>
+          <input class="email" type="email" name="email" id="cd-email2">
+      </div>
+      
+      <div style="text-align: center;">
+        <ul class="cd-form-list">
+          <li>
+            <input type="checkbox" id="guest-checkbox" name="guest-checkbox">
+            <label for="guest-checkbox">I am bringing a guest</label>
+          </li>
+      </div>
+
+      <div class="icon">
+        <label class="cd-label" for="cd-name" id="guest-label">Guest Name</label>
+        <input class="user" type="text" name="guest" id="guest-name">
+      </div>
+
+      <div style="text-align: center;">
+        <input type="submit" value="Submit">
+      </div>
+    </fieldset>
+  </form>
+<script src="../assets/rsvp/jquery-2.1.1.js"></script>
+<script src="../assets/rsvp/main.js"></script> <!-- Resource jQuery -->
+  <p class="bongsky-p">
+    Please let us know by June 1, 2018
+  </p>
+  <p class="bongsky-p">
+    # days until the wedding!
+  </p>
+
+</div>

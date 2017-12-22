@@ -1,0 +1,34 @@
+<% content_for :title do %>Contact<% end %>
+
+<div class="jumbotron">
+  <h1 class="bongsky-title">Contact</h1>
+
+  <p class="bongsky-p">Feel free to leave Mike and Edwina a message below:</p>
+  
+  <form class="cd-form floating-labels" action="/pages/contact/send" method="get">
+    <fieldset>
+
+      <div class="error-message" name="error-message" id="error-message">
+        <p>Please enter a valid email address</p>
+      </div>
+
+      <div class="icon">
+        <label class="cd-label" for="cd-email">Email</label>
+        <input class="email error" type="email" name="email" id="cd-email" required>
+      </div>
+
+      <div class="icon">
+        <label class="cd-label" for="cd-textarea">Message</label>
+          <textarea class="message" name="contents" id="cd-textarea" required></textarea>
+      </div>
+
+      <div style="text-align: center;">
+        <input type="submit" value="Send Message">
+      </div>
+    </fieldset>
+  </form>
+
+<script src="../assets/contact/jquery-2.1.1.js"></script>
+<script src="../assets/contact/main.js"></script> <!-- Resource jQuery -->
+
+</div>

@@ -1,0 +1,60 @@
+<% content_for :title do %>Contact<% end %>
+
+<div class="jumbotron">
+  <h1 class="bongsky-title">Contact</h1>
+  <p class="bongsky-p">
+    Feel free to leave Mike and Edwina a message below:
+  </p>
+  <p class="bongsky-p">
+    Email <%= text_field(:send, params[:provided_email], size: 30, class: "email_field")%>
+  </p>
+  <br>
+  <p class="bongsky-p">
+    <%= text_area(:send, params[:provided_contents], class: "contact-box") %>
+  </p>
+  <br>
+  <p class="bongsky-p">
+    <%= link_to "Submit", contact_email_path, class: "btn btn-lg btn-primary submit_link" %>
+  </p>
+
+
+<script>
+  $(".submit_link").click(function() {
+    $(this).attr("href", function() {
+      return this.href + "?email_old=" + $('.email_field').val()+"&contents_old=" + $('.contact-box').val();
+    });
+  });
+</script>
+
+
+
+
+
+<form class="cd-form floating-labels" action="/pages/contact/send" method="get">
+    <fieldset>
+      <legend>Feel free to leave Mike and Edwina a message:</legend>
+
+      <div class="error-message">
+        <p>Please enter a valid email address</p>
+      </div>
+
+      <div class="icon">
+        <label class="cd-label" for="cd-email">Email</label>
+        <input class="email error" type="email" name="email" id="cd-email" required>
+      </div>
+
+      <div class="icon">
+        <label class="cd-label" for="cd-textarea">Message</label>
+          <textarea class="message" name="contents" id="cd-textarea" required></textarea>
+      </div>
+
+      <div>
+        <input type="submit" value="Send Message">
+      </div>
+    </fieldset>
+  </form>
+<script src="../assets/contact/jquery-2.1.1.js"></script>
+<script src="../assets/contact/main.js"></script> <!-- Resource jQuery -->
+
+
+</div>

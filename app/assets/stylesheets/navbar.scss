@@ -1,0 +1,107 @@
+@import '../partials/variables'; // colors, fonts etc...
+
+///////////////////////navbar///////////////////
+
+//navbar height
+.navbar {
+  height: 38px;
+}
+
+//center navbar
+.navbar-nav{
+     margin: 0 auto;        //margin for collapse
+     display: table;        //center collapse
+     table-layout: auto;    //does nothing...
+     float: none;           //center navbar on expanded desktop
+}
+
+.navbar-inverse {
+  background-color: $color-bg;
+  border-color: $color-bg-border;
+  border: none!important;
+}
+
+.navbar-collapse {
+  border-color: $color-bg-border !important;
+}
+
+.nav-link {
+  color: $color-link !important;
+}
+.nav-link:hover {
+  color: $color-link-hover !important;
+}
+.nav-item-font {
+   font-family: $font-nav-items;
+   letter-spacing: 2px;
+   color: $color-link !important;
+}
+
+.collapsed-logo {
+  display: none;
+}
+
+.glyphicon {
+  color: $color-toggle;
+}
+
+.navbar-toggle {
+  background-color: $color-bg-toggle;
+  border-color: $color-toggle-border!important;
+  margin-left: 8px;
+  height: 34px;
+  width: 34px;
+}
+
+@media screen and (max-width:767px) and (min-width:441px) {
+  .navbar-right {
+    float: right!important;
+  }
+  .navbar-collapse.collapse {
+    display: block!important;
+    height: auto!important;
+    overflow: visible!important;
+    border: none;
+  }
+  .navbar-nav>li {
+    float: left;
+    margin: 5px 0;
+  }
+  .navbar-header {
+    float: left
+  }
+  .navbar-toggle {
+    display: none
+  }
+  .collapsed-logo {
+    display: none
+  }
+}
+
+
+@media screen and (max-width:440px){
+  .navbar-collapse.collapse {
+    background-color: $color-bg;
+  }
+  .navbar-collapse.collapsing {
+    background-color: $color-bg;
+  }
+  .collapsed-logo{
+    display: table;
+    margin: auto;
+  }
+  .nav-item-logo{
+    display: none!important;
+  }
+}
+
+//To fit all links need to remove margins
+.container-fluid {
+  padding-left: 0px;
+  padding-right: 0px;
+}
+.navbar-collapse {
+  padding-left: 0px;
+  padding-right: 0px;
+}
+

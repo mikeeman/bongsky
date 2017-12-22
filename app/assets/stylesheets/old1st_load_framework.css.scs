@@ -1,0 +1,261 @@
+// import the CSS framework
+// Do not use *= require in Sass or your other stylesheets will not be able to access the Bootstrap mixins and variables.
+@import "bootstrap-sprockets";
+@import "bootstrap";
+@import "bootstrap-social.css";
+
+$bgGrey : #eceeef;
+$buttonBlue : #207cca;
+//$grid-float-breakpoint : 480px;
+
+/*
+ * Responsive text aligning
+ * http://ohryan.ca/2014/08/14/set-responsive-text-alignment-bootstrap-3/
+ */
+.text-xs-left { text-align: left; }
+.text-xs-right { text-align: right; }
+.text-xs-center { text-align: center; }
+.text-xs-justify { text-align: justify; }
+
+@media (min-width: $screen-sm-min) {
+  .text-sm-left { text-align: left; }
+  .text-sm-right { text-align: right; }
+  .text-sm-center { text-align: center; }
+  .text-sm-justify { text-align: justify; }
+}
+
+@media (min-width: $screen-md-min) {
+  .text-md-left { text-align: left; }
+  .text-md-right { text-align: right; }
+  .text-md-center { text-align: center; }
+  .text-md-justify { text-align: justify; }
+}
+
+@media (min-width: $screen-lg-min) {
+  .text-lg-left { text-align: left; }
+  .text-lg-right { text-align: right; }
+  .text-lg-center { text-align: center; }
+  .text-lg-justify { text-align: justify; }
+}
+
+//navbar tabs justified and responsive
+@media (min-width: 769px){
+  .navbar-nav{
+     margin: 0 auto;
+     display: table;
+     table-layout: fixed;
+     float: none;
+     color: #fff !important;
+  }
+}  
+
+// make all images responsive by default
+img {
+  @extend .img-responsive;
+  margin: 0 auto;
+}
+// override for the 'Home' navigation link
+.navbar-brand {
+  font-size: inherit;
+}
+
+.navbar-nav-right {
+  @extend .navbar-nav;
+  float: right;
+  width: 170px
+}
+
+.nav-link {
+  color: #fff !important;
+}
+
+.nav-link:hover {
+  color: #b3b3b3 !important;
+}
+
+@media (min-width: 769px) {
+    .navbar-header {
+        float: none;
+    }
+    .navbar-toggle {
+        display: block;
+    }
+    .navbar-collapse {
+        border-top: 1px solid transparent;
+        box-shadow: inset 0 1px 0 rgba(255,255,255,0.1);
+    }
+    .navbar-collapse.collapse {
+        display: none!important;
+    }
+    .navbar-nav {
+        float: none!important;
+        margin: 7.5px -15px;
+    }
+    .navbar-nav>li {
+        float: none;
+    }
+    .navbar-nav>li>a {
+        padding-top: 10px;
+        padding-bottom: 10px;
+        color: #fff !important;
+    }
+    .navbar-nav>li>a:hover {
+        color: #b3b3b3 !important;
+    }
+    .navbar-text {
+        float: none;
+        margin: 15px 0;
+    }
+    /* since 3.1.0 */
+    .navbar-collapse.collapse.in { 
+        display: block!important;
+    }
+    .collapsing {
+        //overflow: hidden!important;
+    }
+    .navbar-toggle {
+      background-color: #222 !important;
+    }
+}
+
+.navbar-nav.nav-justified {
+    display:table;
+}
+
+.navbar-nav.nav-justified > li{
+    float:none;
+    width:auto;
+}
+
+.nav-item-font {
+   font-family: Pattaya;
+   color:#fff;
+}
+
+
+
+// THESE ARE EXAMPLES YOU CAN MODIFY
+// create your own classes
+// to make views framework-neutral
+.column {
+  @extend .col-md-6;
+  @extend .text-xs-center;
+}
+.form {
+  @extend .col-md-6;
+}
+.form-centered {
+  @extend .col-md-6;
+  @extend .text-xs-center;
+}
+.submit {
+  @extend .btn;
+  @extend .btn-primary;
+  @extend .btn-lg;
+}
+
+// apply styles to HTML elements
+// to make views framework-neutral
+main {
+  @extend .container;
+  margin-top: 30px; // accommodate the navbar
+}
+
+section {
+  @extend .row;
+  margin-top: 20px;
+}
+
+// Search Box
+
+.divsearch {
+    @extend .jumbotron;
+	padding:0px 0px 0px 8px;
+}
+
+.search_box {
+	//margin: 10px 0px 30px 0px;
+	padding:8px 15px;
+	background:$bgGrey;
+	border:2px solid $bgGrey;
+	width:95%;
+}
+
+.search_button {
+    @extend .search_box;
+	position: relative;
+	left: -8px;
+	width: 4%;
+	background: url(SearchButton.png) bottom right no-repeat;
+	background-size: contain;
+    cursor: pointer;	
+}
+
+.search_button2 {
+    @extend .search_box;
+    position:relative;
+	left:-8px;
+	background-color: $buttonBlue;
+	width:20%;
+	
+	&:hover {
+	    background-color: $bgGrey;
+		color: $buttonBlue;
+	}
+}
+
+//FrontPage
+
+.jumbotron-bg {
+    @extend .jumbotron;
+    background: url(Header.jpg) bottom center no-repeat;
+    background-size:100%;
+    height:100%;   
+}
+
+.lead-white {
+    @extend .lead;
+	color: white;
+	text-shadow: 0 0 4px black, 0 0 4px black, 0 0 4px black, 0 0 4px black;
+}
+
+//navbar
+#autocollapse.collapsed .navbar-header {
+    float: none;
+}
+#autocollapse.collapsed .navbar-toggle {
+    display: block;
+}
+#autocollapse.collapsed .navbar-collapse {
+    border-top: 1px solid transparent;
+    box-shadow: inset 0 1px 0 rgba(255,255,255,0.1);
+}
+#autocollapse.collapsed .navbar-collapse.collapse {
+    display: none!important;
+}
+#autocollapse.collapsed .navbar-nav {
+    float: none!important;
+    margin: 7.5px -15px;
+}
+#autocollapse.collapsed .navbar-nav>li {
+    float: none;
+}
+#autocollapse.collapsed .navbar-nav>li>a {
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+.shiftnavbar-header{
+    width:200px;
+    margin-left:8.3333% !important;
+}
+.shiftcontent{
+    margin-top:100px;
+}
+
+.navbar-toggle
+{
+    margin-left:8px;
+    float:left;
+    margin-right:0px;
+}
