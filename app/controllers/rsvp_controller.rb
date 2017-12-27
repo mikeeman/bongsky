@@ -27,7 +27,8 @@ class RsvpController < ApplicationController
           table_name: 'bongsky-rsvp',
           item: {
                   'name' => @name, 
-                  'attending' => @attending ? 1 : 0
+                  'attending' => @attending ? 1 : 0,
+                  'email' => @email
                 }
         })
         resp.successful?
