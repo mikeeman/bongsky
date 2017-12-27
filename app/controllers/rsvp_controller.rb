@@ -6,11 +6,11 @@ class RsvpController < ApplicationController
   	  end
 
   	  if(params.has_key?(:attending))
-  	  	@attending = true
-  	  end
-  	  
-  	  if(params.has_key?(:notattending))
-  	  	@attending = false
+        if(params[:attending] == "attending")
+          @attending = true
+        else
+          @attending = false
+        end
   	  end
 
       if(params.has_key?(:email))
@@ -20,13 +20,8 @@ class RsvpController < ApplicationController
   	  if(params.has_key?(:guest))
   	  	@guest = params[:guest]
   	  end
-
-  	  #Save to Dynamo
-      @item_hash = {
-                    'name' => 'testing', 
-                    'attending' => 0 
-                   }
-
+      
+      # Save to Dynamo
       begin
         resp = $ddb.put_item({
           table_name: 'bongsky-rsvp',
@@ -34,7 +29,6 @@ class RsvpController < ApplicationController
                   'name' => @name, 
                   'attending' => @attending ? 1 : 0
                 }
-          #return_values: 'NONE'
         })
         resp.successful?
       rescue Aws::DynamoDB::Errors::ServiceError => e
