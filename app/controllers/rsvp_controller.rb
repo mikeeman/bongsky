@@ -1,8 +1,6 @@
 class RsvpController < ApplicationController
 	def send(variable)
 
-      @name   = "none"
-      @email  = "none"
       @guests = ""
 
   	  if(params.has_key?(:name))
@@ -61,23 +59,99 @@ class RsvpController < ApplicationController
         @guests += ", " + params[:guest10]
       end
 
-      # Save to Dynamo
-      begin
-        resp = $ddb.put_item({
-          table_name: 'bongsky-rsvp',
-          item: {
+      if(params.has_key?(:attending))
+        if(!@email.blank?)
+          if(!@guests.blank?)
+            @itemhash = {
                   'name' => @name, 
                   'attending' => @attending ? 1 : 0,
                   'email' => @email,
                   'guests' => @guests
                 }
-        })
-        resp.successful?
-      rescue Aws::DynamoDB::Errors::ServiceError => e
-        false
+          else
+            @itemhash = {
+                  'name' => @name, 
+                  'attending' => @attending ? 1 : 0,
+                  'email' => @email
+                }
+          end
+        else
+          if(params.has_key?(:guest1))
+            @itemhash = {
+                  'name' => @name, 
+                  'attending' => @attending ? 1 : 0,
+                  'guests' => @guests
+                }
+          else
+            @itemhash = {
+                  'name' => @name, 
+                  'attending' => @attending ? 1 : 0
+                }
+          end
+        end
+
+        # Save to Dynamo
+        begin
+          resp = $ddb.put_item({
+            table_name: 'bongsky-rsvp',
+            item: @itemhash
+              })
+          resp.successful?
+        rescue Aws::DynamoDB::Errors::ServiceError => e
+          false
+        end
+
+        RsvpMailer.rsvp_email(@name, @email, @attending, @guests).deliver
+      else
+        if(!@email.blank?)
+          if(!@guests.blank?)
+            @itemhash = {
+                  'name' => @name, 
+                  'attending' => -1,
+                  'email' => @email,
+                  'guests' => @guests,
+                  'error' => "did not select attending or not attending"
+                }
+          else
+            @itemhash = {
+                  'name' => @name, 
+                  'attending' => -1,
+                  'email' => @email,
+                  'error' => "did not select attending or not attending"
+
+                }
+          end
+        else
+          if(params.has_key?(:guest1))
+            @itemhash = {
+                  'name' => @name, 
+                  'attending' => -1,
+                  'guests' => @guests,
+                  'error' => "did not select attending or not attending"
+                }
+          else
+            @itemhash = {
+                  'name' => @name, 
+                  'attending' => -1,
+                  'error' => "did not select attending or not attending"
+                }
+          end
+        end
+        # Save to Dynamo with error
+        begin
+          resp = $ddb.put_item({
+            table_name: 'bongsky-rsvp',
+            item: @itemhash
+          })
+          resp.successful?
+        rescue Aws::DynamoDB::Errors::ServiceError => e
+          false
+        end
+
+        RsvpMailer.rsvp_email(@name, @email, @attending, @guests, "did not select attending or not attending").deliver
       end
 
-      RsvpMailer.rsvp_email(@name, @email, @attending, @guests).deliver
+      
 
       if(params.has_key?(:attending))
       	if (@attending)

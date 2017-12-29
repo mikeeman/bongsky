@@ -5,18 +5,12 @@ jQuery(document).ready(function($){
 	if( $('.floating-labels').length > 0 ) floatLabels();
 
 	$("#addguest").click(function () {
-        //var addressValue = $(this).attr("href");
-        //alert(addressValue );
-        console.log("addguest click");
         NUM_GUESTS++;
         add_fields();
         floatLabels();
     });
 
     $("#addguestp").click(function () {
-        //var addressValue = $(this).attr("href");
-        //alert(addressValue );
-        console.log("addguestp click");
         NUM_GUESTS++;
         add_fields();
         floatLabels();
@@ -39,12 +33,7 @@ jQuery(document).ready(function($){
 	}
 
 	function add_fields() {
-        //var d = document.getElementById("guest-fields");
-        
-
         $("#guest-fields").append("<div class='icon'><label class='cd-label' for='guest-name" + NUM_GUESTS + "' id='guest-label" + NUM_GUESTS + "'>Guest Name</label> <input class='user' type='text' name='guest" + NUM_GUESTS + "' id='guest-name" + NUM_GUESTS + "'></div>");
-
-        //d.innerHTML += "<div class='icon'><label class='cd-label' for='guest-name" + NUM_GUESTS + "' id='guest-label" + NUM_GUESTS + "'>Guest Name</label> <input class='user' type='text' name='guest" + NUM_GUESTS + "' id='guest-name" + NUM_GUESTS + "'></div>";
     }
 
 });
