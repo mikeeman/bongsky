@@ -220,12 +220,6 @@ font-family: Karla;
   margin: auto;
 }
 
-/////////////preload//////////////////
-body:after{
-    display: none;
-    content: url(../Couple-Main-C.jpg) url(../Couple-1-C.jpg) url(../Couple-2-C.jpg) url(../Couple-3-C.jpg) url(../Couple-4-C.jpg) url(../Couple-5-C.jpg) url(../Couple-6-C.jpg) url(../Couple-7-C.jpg);
-}
-
 ////////////image-fadein/////////////
 .star {
   visibility: hidden;
