@@ -8,10 +8,12 @@ class RsvpMailer < ApplicationMailer
 		@attending = attending
 		@guests    = guests
 		@error     = error
-		if(@attending)
+		if(@attending == 1)
 			@subjectString = 'RSVP: ' + name + ' is attending!'
-		else
+		elsif(@attending == 0)
 		    @subjectString = 'RSVP: ' + name + ' is not attending.'
+		else
+			@subjectString = 'RSVP: ' + name + ' had trouble filling out the form...'
 		end
 
 		mail(to: 'bongskyweds@gmail.com', subject: @subjectString)

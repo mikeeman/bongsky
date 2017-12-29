@@ -23,39 +23,39 @@ class RsvpController < ApplicationController
   	  	@guests += params[:guest1]
   	  end
 
-      if(params.has_key?(:guest2))
+      if(params.has_key?(:guest2) && !params[:guest2].blank?)
         @guests += ", " + params[:guest2]
       end
 
-      if(params.has_key?(:guest3))
+      if(params.has_key?(:guest3) && !params[:guest3].blank?)
         @guests += ", " + params[:guest3]
       end
 
-      if(params.has_key?(:guest4))
+      if(params.has_key?(:guest4) && !params[:guest4].blank?)
         @guests += ", " + params[:guest4]
       end
 
-      if(params.has_key?(:guest5))
+      if(params.has_key?(:guest5) && !params[:guest5].blank?)
         @guests += ", " + params[:guest5]
       end
 
-      if(params.has_key?(:guest6))
+      if(params.has_key?(:guest6) && !params[:guest6].blank?)
         @guests += ", " + params[:guest6]
       end
 
-      if(params.has_key?(:guest7))
+      if(params.has_key?(:guest7) && !params[:guest7].blank?)
         @guests += ", " + params[:guest7]
       end
       
-      if(params.has_key?(:guest8))
+      if(params.has_key?(:guest8) && !params[:guest8].blank?)
         @guests += ", " + params[:guest8]
       end
 
-      if(params.has_key?(:guest9))
+      if(params.has_key?(:guest9) && !params[:guest9].blank?)
         @guests += ", " + params[:guest9]
       end
 
-      if(params.has_key?(:guest10))
+      if(params.has_key?(:guest10) && !params[:guest10].blank?)
         @guests += ", " + params[:guest10]
       end
 

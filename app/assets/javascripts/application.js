@@ -17,7 +17,6 @@
 //= require modernizr
 //= require main
 //= require underscore
-//= require map
 //= require side-bio/main
 //= require rsvp/main
 //= require rsvp/jquery-2.1.1.js
