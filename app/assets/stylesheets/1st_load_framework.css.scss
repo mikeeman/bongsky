@@ -161,15 +161,6 @@ img {
                 /* (853 / 1280 * 100) */
 }
 
-.lead-white {
-  @extend .lead;
-  color: white;
-  text-shadow: 0 0 4px black, 0 0 4px black, 0 0 4px black, 0 0 4px black;
-  font-family: Pattaya;
-  text-align:center;
-  //margin-top: -70px;
-}
-
 //////////////////font////////////////
 /*
 $mqIterations: 19;

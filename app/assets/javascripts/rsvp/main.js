@@ -33,7 +33,7 @@ jQuery(document).ready(function($){
 	}
 
 	function add_fields() {
-        $("#guest-fields").append("<div class='icon'><label class='cd-label' for='guest-name" + NUM_GUESTS + "' id='guest-label" + NUM_GUESTS + "'>Guest Name</label> <input class='user' type='text' name='guest" + NUM_GUESTS + "' id='guest-name" + NUM_GUESTS + "'></div>");
+	    $("#guest-fields").append("<div class='icon'><label class='cd-label' for='guest-name" + NUM_GUESTS + "' id='guest-label" + NUM_GUESTS + "'>Guest Name</label> <input class='user' type='text' name='guest" + NUM_GUESTS + "' id='guest-name" + NUM_GUESTS + "'></div>");
     }
 
 });

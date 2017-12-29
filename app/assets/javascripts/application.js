@@ -15,8 +15,4 @@
 //= require turbolinks
 //= require bootstrap-sprockets
 //= require modernizr
-//= require main
 //= require underscore
-//= require side-bio/main
-//= require rsvp/main
-//= require rsvp/jquery-2.1.1.js

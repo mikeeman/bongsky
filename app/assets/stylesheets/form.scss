@@ -1,10 +1,10 @@
 @import 'bourbon'; // http://bourbon.io/
 
-@import '../partials/contact/variables'; // colors, fonts etc...
+@import '../partials/form/variables'; // colors, fonts etc...
 
-@import '../partials/contact/mixins'; // custom mixins
+@import '../partials/form/mixins'; // custom mixins
 
-@import '../partials/contact/layout'; // responsive grid and media queries
+@import '../partials/form/layout'; // responsive grid and media queries
 
 /* -------------------------------- 
 
@@ -124,7 +124,7 @@ Form
 			width: 16px;
 			height: 16px;
 
-			background: url('../../contact/cd-icon-arrow.svg') no-repeat center center;
+			background: url('../../form/cd-icon-arrow.svg') no-repeat center center;
 			pointer-events: none;
 		}
 	}
@@ -213,12 +213,12 @@ Form
 
 	input[type="radio"] + label::after {
 		/* custom image for radio button */
-		background-image: url('../../contact/cd-icon-radio.svg');
+		background-image: url('../../form/cd-icon-radio.svg');
 	}
 
 	input[type="checkbox"] + label::after {
 		/* custom image for checkbox */
-		background-image: url('../../contact/cd-icon-check.svg');
+		background-image: url('../../form/cd-icon-check.svg');
 	}
 
 	input[type="radio"]:focus + label::before,
@@ -273,7 +273,7 @@ Form
 	}
 
 	[required] {
-		background: url('../../contact/cd-required.svg') no-repeat top right;
+		background: url('../../form/cd-required.svg') no-repeat top right;
 	}
 
 	.error-message p {
@@ -337,43 +337,43 @@ Custom icons
 	}
 
 	.user {
-		background: url('../../contact/cd-icon-user.svg') no-repeat 16px center;
+		background: url('../../form/cd-icon-user.svg') no-repeat 16px center;
 	}
 
 	[required].user {
-		background: url('../../contact/cd-icon-user.svg') no-repeat 16px center, 
-					url('../../contact/cd-required.svg') no-repeat top right;
+		background: url('../../form/cd-icon-user.svg') no-repeat 16px center, 
+					url('../../form/cd-required.svg') no-repeat top right;
 	}
 
 	.company {
-		background: url('../../contact/cd-icon-company.svg') no-repeat 16px center;
+		background: url('../../form/cd-icon-company.svg') no-repeat 16px center;
 	}
 
 	[required].company {
-		background: url('../../contact/cd-icon-company.svg') no-repeat 16px center, 
-					url('../../contact/cd-required.svg') no-repeat top right;
+		background: url('../../form/cd-icon-company.svg') no-repeat 16px center, 
+					url('../../form/cd-required.svg') no-repeat top right;
 	}
 
 	.email {
-		background: url('../../contact/cd-icon-email.svg') no-repeat 16px center;
+		background: url('../../form/cd-icon-email.svg') no-repeat 16px center;
 	}
 
 	[required].email {
-		background: url('../../contact/cd-icon-email.svg') no-repeat 16px center, 
-					url('../../contact/cd-required.svg') no-repeat top right;
+		background: url('../../form/cd-icon-email.svg') no-repeat 16px center, 
+					url('../../form/cd-required.svg') no-repeat top right;
 	}
 
 	.budget {
-		background: url('../../contact/cd-icon-budget.svg') no-repeat 16px center;
+		background: url('../../form/cd-icon-budget.svg') no-repeat 16px center;
 	}
 
 	.message {
-		background: url('../../contact/cd-icon-message.svg') no-repeat 16px 16px;
+		background: url('../../form/cd-icon-message.svg') no-repeat 16px 16px;
 	}
 
 	[required].message {
-		background: url('../../contact/cd-icon-message.svg') no-repeat 16px 16px, 
-					url('../../contact/cd-required.svg') no-repeat top right;
+		background: url('../../form/cd-icon-message.svg') no-repeat 16px 16px, 
+					url('../../form/cd-required.svg') no-repeat top right;
 	}
 }
 

@@ -159,34 +159,4 @@
   </section>
 </div>
 
-<script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-
-<script>
-console.log('enter jQuery function')
-jQuery(document).ready(function($){
-var $timeline_block = $('.cd-timeline-block');
-
-console.log($timeline_block)
-//hide timeline blocks which are outside the viewport
-$timeline_block.each(function(){
-console.log($(this).offset().top)
-console.log($(window).scrollTop()+$(window).height()*0.75)
-if($(this).offset().top > $(window).scrollTop()+$(window).height()*0.75) {
-$(this).find('.cd-timeline-img, .cd-timeline-content').addClass('is-hidden');
-}
-});
-
-//on scolling, show/animate timeline blocks when enter the viewport
-$(window).on('scroll', function(){
-console.log("on scroll")
-$timeline_block.each(function(){
-if( $(this).offset().top <= $(window).scrollTop()+$(window).height()*0.75 && $(this).find('.cd-timeline-img').hasClass('is-hidden') ) {
-$(this).find('.cd-timeline-img, .cd-timeline-content').removeClass('is-hidden').addClass('bounce-in');
-}
-});
-});
-});
-console.log('exit jQuery function')
-</script>
-
-<script src="../../assets/main.js"></script>
+<script src="../../assets/timeline/main.js"></script>
