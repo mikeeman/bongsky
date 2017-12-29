@@ -4,12 +4,14 @@
     <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
   </head>
   <body>
-    <h1>Contact Message from: <%= @email %></h1>
     <p>
-      Contents:
+      Name: <%= @name %>
     </p>
     <p>
-      <%=h @contents %>
+      Email: <%= @email %>
+    </p>
+    <p>
+      Guests: <%= @guests %>
     </p>
   </body>
 </html>

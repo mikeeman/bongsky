@@ -1,6 +1,10 @@
 class RsvpController < ApplicationController
 	def send(variable)
 
+      @name   = "none"
+      @email  = "none"
+      @guests = ""
+
   	  if(params.has_key?(:name))
   	    @name = params[:name]
   	  end
@@ -17,10 +21,46 @@ class RsvpController < ApplicationController
       	@email = params[:email]
       end
 
-  	  if(params.has_key?(:guest))
-  	  	@guest = params[:guest]
+  	  if(params.has_key?(:guest1))
+  	  	@guests += params[:guest1]
   	  end
+
+      if(params.has_key?(:guest2))
+        @guests += ", " + params[:guest2]
+      end
+
+      if(params.has_key?(:guest3))
+        @guests += ", " + params[:guest3]
+      end
+
+      if(params.has_key?(:guest4))
+        @guests += ", " + params[:guest4]
+      end
+
+      if(params.has_key?(:guest5))
+        @guests += ", " + params[:guest5]
+      end
+
+      if(params.has_key?(:guest6))
+        @guests += ", " + params[:guest6]
+      end
+
+      if(params.has_key?(:guest7))
+        @guests += ", " + params[:guest7]
+      end
       
+      if(params.has_key?(:guest8))
+        @guests += ", " + params[:guest8]
+      end
+
+      if(params.has_key?(:guest9))
+        @guests += ", " + params[:guest9]
+      end
+
+      if(params.has_key?(:guest10))
+        @guests += ", " + params[:guest10]
+      end
+
       # Save to Dynamo
       begin
         resp = $ddb.put_item({
@@ -28,7 +68,8 @@ class RsvpController < ApplicationController
           item: {
                   'name' => @name, 
                   'attending' => @attending ? 1 : 0,
-                  'email' => @email
+                  'email' => @email,
+                  'guests' => @guests
                 }
         })
         resp.successful?
@@ -36,7 +77,9 @@ class RsvpController < ApplicationController
         false
       end
 
-      if(params.has_key?(:attending) || params.has_key?(:notattending))
+      RsvpMailer.rsvp_email(@name, @email, @attending, @guests).deliver
+
+      if(params.has_key?(:attending))
       	if (@attending)
   	  	  redirect_to '/pages/rsvp/#sent', :flash => { :notice => "See you soon!  If anything changes, just RSVP again." }
   	    else
