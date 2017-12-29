@@ -163,4 +163,9 @@ class RsvpController < ApplicationController
       	redirect_to '/pages/rsvp/#error', :flash => { :notice => "Please let us know if you can make it or not." }
       end
     end
+
+    def number_of_days_until_the_wedding
+      @numdays = (Time.now - "2018-08-18 15:00:00") / 86400
+    end
+
 end
