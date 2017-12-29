@@ -19,7 +19,5 @@
 //= require underscore
 //= require map
 //= require side-bio/main
-//= require contact/main
-//= require contact/jquery-2.1.1.js
 //= require rsvp/main
 //= require rsvp/jquery-2.1.1.js
