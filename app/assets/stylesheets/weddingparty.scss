@@ -369,6 +369,55 @@ header {
 	}
 }
 
+.dan-bg {
+	background: $color-dan-bg;
+    &::after {
+        @include background(linear-gradient(to top, $color-dan-bg, rgba($color-dan-bg, 0)));
+    }
+}
+
+.nicole-bg {
+	background: $color-nicole-bg;
+    &::after {
+        @include background(linear-gradient(to top, $color-nicole-bg, rgba($color-nicole-bg, 0)));
+    }
+}
+
+.mladen-bg {
+	background: $color-mladen-bg;
+    &::after {
+        @include background(linear-gradient(to top, $color-mladen-bg, rgba($color-mladen-bg, 0)));
+    }
+}
+
+.emi-bg {
+	background: $color-emi-bg;
+    &::after {
+        @include background(linear-gradient(to top, $color-emi-bg, rgba($color-emi-bg, 0)));
+    }
+}
+
+.maria-bg {
+	background: $color-maria-bg;
+    &::after {
+        @include background(linear-gradient(to top, $color-maria-bg, rgba($color-maria-bg, 0)));
+    }
+}
+
+.jon-bg {
+	background: $color-jon-bg;
+    &::after {
+        @include background(linear-gradient(to top, $color-jon-bg, rgba($color-jon-bg, 0)));
+    }
+}
+
+.steve-bg {
+	background: $color-steve-bg;
+    &::after {
+        @include background(linear-gradient(to top, $color-steve-bg, rgba($color-steve-bg, 0)));
+    }
+}
+
 .sofia-bg {
 	background: $color-sofia-bg;
     &::after {
