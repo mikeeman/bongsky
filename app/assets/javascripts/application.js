@@ -16,3 +16,7 @@
 //= require bootstrap-sprockets
 //= require modernizr
 //= require underscore
+//= require gmaps/gmaps_google
+//= require gmaps/map
+//= require side-bio/main
+//= require timeline/main
