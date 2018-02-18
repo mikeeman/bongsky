@@ -19,6 +19,10 @@ class RsvpController < ApplicationController
       	@email = params[:email]
       end
 
+      if(params.has_key?(:code))
+        @code = params[:code]
+      end
+
   	  if(params.has_key?(:guest1))
   	  	@guests += params[:guest1]
   	  end
@@ -59,109 +63,128 @@ class RsvpController < ApplicationController
         @guests += ", " + params[:guest10]
       end
 
-      if(params.has_key?(:attending))
-        if(!@email.blank?)
-          if(!@guests.blank?)
-            @itemhash = {
+      if(@code == ENV['RSVP_CODE'])
+        #Happy path: guest has answered correct RSVP code
+        @timestamp = Time.now.strftime("%m-%d-%Y %I:%M%p")
+        if(params.has_key?(:attending))
+          if(!@email.blank?)
+            if(!@guests.blank?)
+              @itemhash = {
                   'name' => @name, 
                   'attending' => @attending ? 1 : 0,
                   'email' => @email,
-                  'guests' => @guests
-                }
-          else
-            @itemhash = {
+                  'guests' => @guests,
+                  'timestamp' => @timestamp
+                  #t.strftime(“Printed on %m/%d/%Y”) #=> “Printed on 04/09/2003”
+                  #t.strftime(“at %I:%M%p”) #=> “at 08:56AM”
+                  }
+            else
+              @itemhash = {
                   'name' => @name, 
                   'attending' => @attending ? 1 : 0,
-                  'email' => @email
-                }
+                  'email' => @email,
+                  'timestamp' => @timestamp
+                  }
+            end
+          else
+            if(params.has_key?(:guest1))
+              @itemhash = {
+                  'name' => @name, 
+                  'attending' => @attending ? 1 : 0,
+                  'guests' => @guests,
+                  'timestamp' => @timestamp
+                  }
+            else
+              @itemhash = {
+                  'name' => @name, 
+                  'attending' => @attending ? 1 : 0,
+                  'timestamp' => @timestamp
+                  }
+            end
           end
+
+          # Save to Dynamo
+          begin
+            resp = $ddb.put_item({
+              table_name: 'bongsky-rsvp',
+              item: @itemhash
+                })
+            resp.successful?
+          rescue Aws::DynamoDB::Errors::ServiceError => e
+            false
+          end
+
+          RsvpMailer.rsvp_email(@name, @email, @attending, @guests).deliver
         else
-          if(params.has_key?(:guest1))
-            @itemhash = {
-                  'name' => @name, 
-                  'attending' => @attending ? 1 : 0,
-                  'guests' => @guests
-                }
-          else
-            @itemhash = {
-                  'name' => @name, 
-                  'attending' => @attending ? 1 : 0
-                }
-          end
-        end
-
-        # Save to Dynamo
-        begin
-          resp = $ddb.put_item({
-            table_name: 'bongsky-rsvp',
-            item: @itemhash
-              })
-          resp.successful?
-        rescue Aws::DynamoDB::Errors::ServiceError => e
-          false
-        end
-
-        RsvpMailer.rsvp_email(@name, @email, @attending, @guests).deliver
-      else
-        if(!@email.blank?)
-          if(!@guests.blank?)
-            @itemhash = {
+          if(!@email.blank?)
+            if(!@guests.blank?)
+              @itemhash = {
                   'name' => @name, 
                   'attending' => -1,
                   'email' => @email,
                   'guests' => @guests,
-                  'error' => "did not select attending or not attending"
-                }
-          else
-            @itemhash = {
+                  'error' => "did not select attending or not attending",
+                  'timestamp' => @timestamp
+                  }
+            else
+              @itemhash = {
                   'name' => @name, 
                   'attending' => -1,
                   'email' => @email,
-                  'error' => "did not select attending or not attending"
-
-                }
-          end
-        else
-          if(params.has_key?(:guest1))
-            @itemhash = {
+                  'error' => "did not select attending or not attending",
+                  'timestamp' => @timestamp
+                  }
+            end
+          else
+            if(params.has_key?(:guest1))
+              @itemhash = {
                   'name' => @name, 
                   'attending' => -1,
                   'guests' => @guests,
-                  'error' => "did not select attending or not attending"
-                }
-          else
-            @itemhash = {
+                  'error' => "did not select attending or not attending",
+                  'timestamp' => @timestamp
+                  }
+            else
+              @itemhash = {
                   'name' => @name, 
                   'attending' => -1,
-                  'error' => "did not select attending or not attending"
-                }
+                  'error' => "did not select attending or not attending",
+                  'timestamp' => @timestamp
+                  }
+            end
           end
-        end
-        # Save to Dynamo with error
-        begin
-          resp = $ddb.put_item({
-            table_name: 'bongsky-rsvp',
-            item: @itemhash
-          })
-          resp.successful?
-        rescue Aws::DynamoDB::Errors::ServiceError => e
-          false
-        end
+          # Save to Dynamo with error
+          begin
+            resp = $ddb.put_item({
+              table_name: 'bongsky-rsvp',
+              item: @itemhash
+            })
+            resp.successful?
+          rescue Aws::DynamoDB::Errors::ServiceError => e
+            false
+          end
 
-        RsvpMailer.rsvp_email(@name, @email, @attending, @guests, "did not select attending or not attending").deliver
-      end
+          RsvpMailer.rsvp_email(@name, @email, @attending, @guests, "did not select attending or not attending").deliver
+        end
 
       
 
-      if(params.has_key?(:attending))
-      	if (@attending)
-  	  	  redirect_to '/pages/rsvp/#sent', :flash => { :notice => "See you soon!  If anything changes, just RSVP again." }
-  	    else
-  	  	  redirect_to '/pages/rsvp/#sent', :flash => { :notice => "Aww shucks!  If you change your mind just RSVP again." }
+        if(params.has_key?(:attending))
+      	  if (@attending)
+  	  	    redirect_to '/pages/rsvp/#sent', :flash => { :notice => "See you soon!  If anything changes, just RSVP again." } and return
+  	      else
+  	  	    redirect_to '/pages/rsvp/#sent', :flash => { :notice => "Aww shucks!  If you change your mind just RSVP again." } and return
+          end
+        else
+      	  redirect_to '/pages/rsvp/#error', :flash => { :notice => "Please let us know if you can make it or not." } and return
         end
-      else
-      	redirect_to '/pages/rsvp/#error', :flash => { :notice => "Please let us know if you can make it or not." }
       end
+    
+    else
+      #guest has entered incorrect RSVP code
+      RsvpMailer.rsvp_email(@name, @email, @attending, @guests, "entered incorrect rsvp code: " + @code).deliver
+      
+      redirect_to '/pages/rsvp/#error', :flash => { :notice => "Oops! RSVP Code entered did not match."} and return
     end
 
     def number_of_days_until_the_wedding
