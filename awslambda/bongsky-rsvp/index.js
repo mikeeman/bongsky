@@ -4,11 +4,18 @@ var request = require('request');
 var rp = require('request-promise');
 var Cookie = require('request-cookies').Cookie;
 var tough = require('tough-cookie');
+var awsParamEnv = require('aws-param-env');
 
 var token;
 var session;
 
 console.log('Loading function');
+console.log('Loading variables from parameter store...');
+awsParamEnv.load('/', {region: 'us-east-2'});
+
+//console.log(process.env);
+
+//console.log('aisleplanner_user=%j', process.env.aisleplanner_user);
 
 //var todayDate = new Date();
 //todayDate.setMinutes(todayDate.getMinutes() - todayDate.getTimezoneOffset());
@@ -326,8 +333,8 @@ exports.handler = (event, context, callback) => {
                             uri: 'https://www.aisleplanner.com/api/account/signin',
                             body: {
                                 destination_url: 'https://www.aisleplanner.com/',
-                                username: 'mikee.man@gmail.com',
-                                password: 'meowcats'
+                                username: process.env.aisleplanner_user,
+                                password: process.env.aisleplanner_pw
                             },
                             headers: {
                                 'Host': 'www.aisleplanner.com',
@@ -487,6 +494,7 @@ exports.handler = (event, context, callback) => {
                                                         rp(signoutOptions)
                                                             .then(function (signoutBody) {
                                                                 console.log("signout succeeded!");
+                                                                //END
                                                             })
                                                             .catch(function (signoutErr) {
                                                                 console.log("signout failed! error: %j", signoutErr);
