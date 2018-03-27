@@ -242,7 +242,8 @@ header {
 			font-family: $primary-font;
 			font-weight: normal;
 			color: lighten($main-text, 40%);
-			@include font-size(14px);
+			font-size: 14px;
+			//@include font-size(14px);
 			margin-top: .5em;
 		}
 	}
