@@ -53,7 +53,8 @@
   width: 34px;
 }
 
-@media screen and (max-width:767px) and (min-width:441px) {
+//@media screen and (max-width:767px) and (min-width:441px) {
+@media screen and (max-width: 767px) and (min-width: 682px) {
   .navbar-right {
     float: right!important;
   }
@@ -79,7 +80,8 @@
 }
 
 
-@media screen and (max-width:440px){
+//@media screen and (max-width:440px){
+@media screen and (max-width: 681px) {
   .navbar-collapse.collapse {
     background-color: $color-bg;
   }

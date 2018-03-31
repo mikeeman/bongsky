@@ -2,26 +2,18 @@
 	background: white;
 	position: relative;
     text-align: center;
-    color: white;
     padding-top: 1px;
 	padding-bottom: 1px;
 }
 
 .card a {
 	color: white;
-	text-decoration: none;
+	//text-decoration: none;
 	font-family: Suranna;
-	font-size: 4.5em;
-	//color: $color-1;
-	line-height: 0.8;
 }
 
 .card a:hover {
 	box-shadow: 3px 3px 8px hsl(0, 0%, 80%);
-}
-
-.card-content {
-	padding: 1.4em;
 }
 
 .p-centered {
@@ -37,14 +29,47 @@
 
 /* Flexbox stuff */
 
+@media screen and (min-width: 1200px) {
+	.card a {
+	    font-size: 4.5em;
+	    line-height: 0.8;
+	}
+}
+
+@media screen and (min-width: 992px) and (max-width: 1199px) {
+	.card a {
+	    font-size: 3.5em;
+	    line-height: 0.85;
+	}
+}
+
+@media screen and (min-width: 751px) and (max-width: 991px) {
+	.card a {
+	    font-size: 3.0em;
+	    line-height: 0.9;
+	}
+}
+
+@media screen and (min-width: 424px) and (max-width: 750px) {
+	.card a {
+	    font-size: 2.5em;
+	    line-height: 1.0;
+	}
+}
+
+@media screen and (max-width: 423px) {
+	.card a {
+	    font-size: 2.0em;
+	    line-height: 1.0;
+	}
+}
+
 @media screen and (min-width: 424px) {
-//@media screen and (min-width: 390px) {
     .smalls {
         display: flex;
     }
 
     .small {
-        //flex: 0 1 calc(33% + 0.23em);
         flex: 0 1 calc(33.333333333%);
     }
 
@@ -61,4 +86,3 @@
         padding-left: 1px;
     }
 }
-
