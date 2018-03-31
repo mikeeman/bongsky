@@ -3,11 +3,17 @@
 	position: relative;
     text-align: center;
     color: white;
+    padding-top: 1px;
+	padding-bottom: 1px;
 }
 
 .card a {
-	color: black;
+	color: white;
 	text-decoration: none;
+	font-family: Suranna;
+	font-size: 4.5em;
+	//color: $color-1;
+	line-height: 0.8;
 }
 
 .card a:hover {
@@ -19,21 +25,40 @@
 }
 
 .p-centered {
-    //position: absolute;
+    position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
 }
 
+.smalls {
+	width: 100%;
+}
+
 /* Flexbox stuff */
 
-@media screen and (min-width: 422px) {
+@media screen and (min-width: 424px) {
+//@media screen and (min-width: 390px) {
     .smalls {
         display: flex;
     }
 
     .small {
-        flex: 0 1 calc(33% + 0.23em);
+        //flex: 0 1 calc(33% + 0.23em);
+        flex: 0 1 calc(33.333333333%);
+    }
+
+    .frontLeft {
+        padding-right: 1px;
+    }
+
+    .frontMiddle {
+        padding-left: 1px;
+        padding-right: 1px;
+    }
+
+    .frontRight {
+        padding-left: 1px;
     }
 }
 

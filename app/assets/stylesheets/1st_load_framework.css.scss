@@ -80,22 +80,6 @@ img {
   display: block;
 }
 
-.imageBoxFront {
-  position: relative;
-  //float: left;
-  //width: 100%;
-  //text-align: center;
-}
-.imageBoxFront .hoverImg {
-  position: absolute;
-  left: 0;
-  top: 0;
-  display: none;
-}
-.imageBoxFront:hover .hoverImg {
-  display: block;
-}
-
 .scrollContainer {
   position: absolute;
   width: 100%;
