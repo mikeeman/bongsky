@@ -19,7 +19,11 @@
 
 # Ignore Byebug command history file.
 .byebug_history
+
+# Ignore miscillaneous dev pieces
 app/assets/images/FrontPageCooking.jpg
+app/views/visitors/cards_sample_index.html.erb
+app/views/visitors/old_index.html.erb
 
 # Ignore precompiled assets
 public/assets
