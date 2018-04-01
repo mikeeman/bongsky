@@ -2,12 +2,9 @@
 // Do not use *= require in Sass or your other stylesheets will not be able to access the Bootstrap mixins and variables.
 @import "bootstrap-sprockets";
 @import "bootstrap";
-//@import "bootstrap-social.css";
 
 @import '../partials/variables'; // colors, fonts etc...
 
-//$bgGrey : #eceeef;
-//$buttonBlue : #207cca;
 
 /////////////////////Responsive Text//////////////////
 /*
@@ -115,52 +112,11 @@ img {
   display: table;
 }
 
-/////////////front page////////////////////
-//FrontPage
+/////////////all pages/////////////////
 
 .jumbotron {
   background-color: #ffffff;
 }
-
-/*
-.jumbotron-bg {
-    @extend .jumbotron;
-    background: url(Header.jpg) bottom center no-repeat;
-    //background-size: 100% 100%;
-    background-size:cover;
-    height:100%;
-    margin: auto;
-
-}
-*/
-
-.jumbotron-bg {
-  @extend .jumbotron;
-  background: url(Header.jpg) bottom center no-repeat;
-  background-size: contain;
-  background-repeat: no-repeat;
-  width: 100%;
-  height: 0;
-  padding-top: 66.64%; /* (img-height / img-width * container-width) */
-                /* (853 / 1280 * 100) */
-}
-
-//////////////////font////////////////
-/*
-$mqIterations: 19;
-@mixin fontResize($iterations)
-{
-  $i: 1;
-  @while $i <= $iterations
-  {
-    @media all and (min-width: 100px * $i) {
-      body { font-size:0.2em * $i; }
-    }
-    $i: $i + 1;
-  }
-}
-@include fontResize($mqIterations);
-*/
 
 ///////////////text///////////////////
 
@@ -238,56 +194,6 @@ font-family: Karla;
   float: left;
   width: 300px;
   margin: 50px 38px 0px;
-}
-
-///////////////// CSS Sprites ////////////
-
-#logo { 
-    display: block; 
-    float: left; 
-    margin: 15px 0; 
-    padding: 0;
-    width: 350px; //portion of the image you wish to display
-    height: 50px; //portion of the image you wish to display
-    overflow: hidden; //hide the rest of the image
-}
-#logo img {
-    width: 350px; 
-    height: 100px; // you'll see this is 2x the height of the viewed image
-    padding: 0; 
-    margin: 0;
-}
-#logo a { 
-    display: block; 
-    float: left; 
-    margin: 0; 
-    padding: 0; 
-}
-#logo a:hover { 
-    margin-top: -50px;  //move up to show the over portion of the image
-}
-
-.oldSpriteWide {
-  float: left;
-  width: 200%!important;
-  overflow: hidden;
-  //display: block;
-  max-width: 200%;
-}
-
-#picturemainbw {
-  //margin-left: 50%;
-  width: 100%;
-  overflow: hidden;
-  fload: left;
-}
-
-.spriteWide {
-  //width:20%;
-  //border-radius:50%;
-  background: url(Header.jpg) no-repeat 50% 100%;
-  background-size: 1250% 625%;
-  height: 100%!important;
 }
 
 ////////////////ALERT//////////////
