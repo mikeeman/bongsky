@@ -4,6 +4,7 @@ function createSidebarLi(json){
 
 function bindLiToMarker($li, marker){
   $li.on('click', function(){
+    document.getElementById('map-container').className = 'unhidden';
     handler.getMap().setZoom(14);
     marker.setMap(handler.getMap()); //because clusterer removes map property from marker
     marker.panTo();
@@ -20,6 +21,8 @@ function createSidebar(json_array){
   });
 };
 
+//map div starts hidden, only show map if icon clicked
+document.getElementById('map-container').className = 'hidden';
 handler = Gmaps.build('Google');
 handler.buildMap({ internal: {id: 'sidebar_builder'}}, function(){
   var json_array = [
