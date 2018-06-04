@@ -259,7 +259,7 @@ Form
 		@include appearance(none);
 
 		.no-touch &:hover {
-			background: lighten($color-2, 5%);
+			background: lighten($color-2, 20%);
 		}
 
 		&:focus {
