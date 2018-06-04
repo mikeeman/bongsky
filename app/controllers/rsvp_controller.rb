@@ -63,7 +63,7 @@ class RsvpController < ApplicationController
         @guests += ", " + params[:guest10]
       end
 
-      if(@code == ENV['RSVP_CODE'])
+      if(@code.upcase == ENV['RSVP_CODE'])
         #Happy path: guest has answered correct RSVP code
         @timestamp = Time.now.strftime("%m-%d-%Y %I:%M%p")
         if(params.has_key?(:attending))
