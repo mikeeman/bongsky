@@ -313,15 +313,16 @@ header {
 		color: #FFF;
 
 		h1 {
-			font-family: $secondary-font;
+			font-family: $tertiary-font;
 			//font-weight: bold;
-			text-transform: uppercase;
+			//text-transform: uppercase;
 			text-align: center;
-			@include font-size(20px);
+			font-size: 28px;
 		}
 
 		p {
-			@include font-size(14px);
+			font-family: $secondary-font;
+			font-size: 16px;
 			margin: 1em 0;
 			line-height: 1.4;
 			color: lighten($color-4, 50%);
@@ -355,13 +356,15 @@ header {
 			/* we move the content up so the title is over the color gradient */
 			@include transform(translateY(-80px));
 
-			h1 {
-				@include font-size(40px);
-			}
+			//h1 {
+				//@include font-size(40px);
+			//	font-size: 40px;
+			//}
 
-			p {
-				@include font-size(16px);
-			}
+			//p {
+				//@include font-size(16px);
+			//	font-size: 16px;
+			//}
 
 			.no-cssgradients & {
 				@include transform(translateY(0));
