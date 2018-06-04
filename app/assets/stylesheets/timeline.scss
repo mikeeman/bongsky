@@ -23,16 +23,16 @@ html * {
 
 
 .timeline-p {
-  font-size: 14px!important;
+  font-size: 16px!important;
   font-family: $timeline-font-p;
   color: $color-timeline-p;
   //line-height: 150% !important;
-  line-height: 1.4 !important;
-  margin: 5px 0 !important;
+  line-height: 1.6 !important;
+  margin: 12px 0 !important;
 }
 
 .timeline-p-header {
-  font-size: 24px!important;
+  font-size: 28px!important;
   font-family: $timeline-font-header;
   font-weight: bold;
   color: $color-timeline-header;
@@ -246,8 +246,8 @@ header {
 	}
 
 	p {
-		margin: 1em 0;
-		line-height: 1.6;
+		margin: 0;
+		line-height: 1.0;
 	}
 
 	.cd-read-more {
