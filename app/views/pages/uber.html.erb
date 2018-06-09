@@ -1,14 +1,46 @@
 <% content_for :title do %>UBER & LYFT<% end %>
 
 <div class="jumbotron">
-  <h1 class="bongsky-title">UBER</h1>
-  
-  
+  <h1 class="bongsky-title">Fare Estimator</h1>
 
-  <div id="map-container" style='width: 100%; height: 550px;'>
-    <div id="sidebar_builder" style="width: 100%; height: 100%;"></div>
-  </div>
+  <h1 class="bongsky-title">Uber</h1>
+  
+  <form class="cd-form floating-labels" action="/pages/uber/send" method="post">
+    <fieldset>
+      <div style="text-align: center;">
+        <p class="cd-select icon">
+          <select class="budget" id="uberPickup" name="uberPickup">
+            <option value="0">Pickup:</option>
+            <option value="1">Ceremony</option><!--43.8824525,-78.8565288-->
+            <option value="2">Reception</option><!--44.0434385,-79.0188748-->
+            <option value="3">Accomodations</option><!--43.8683646,-78.9346927-->
+            <option value="4">Other</option>
+          </select>
+        </p>
+      </div>
+
+      <div id="uber-pickup-other"></div>
+
+      <div style="text-align: center;">
+        <p class="cd-select icon">
+          <select class="budget" id="uberDestination" name="uberDestination">
+            <option value="0">Destination:</option>
+            <option value="1">Ceremony</option><!--43.8824525,-78.8565288-->
+            <option value="2">Reception</option><!--44.0434385,-79.0188748-->
+            <option value="3">Accomodations</option><!--43.8683646,-78.9346927-->
+            <option value="4">Other</option>
+          </select>
+        </p>
+      </div>
+
+      <div id="uber-destination-other"></div>
+
+      <div style="text-align: center;">
+        <input type="submit" value="Calculate">
+      </div>
+    </fieldset>
+  </form>
+
+<%= javascript_include_tag 'uber-lyft/main' %>
 
 </div>
-
-<%= javascript_include_tag 'gmaps/map' %>

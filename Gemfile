@@ -63,3 +63,5 @@ gem 'underscore-rails'
 gem 'gmaps4rails'
 
 gem 'aws-sdk'
+
+gem 'uber-ruby', require: 'uber'
