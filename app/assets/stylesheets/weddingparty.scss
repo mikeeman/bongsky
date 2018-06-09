@@ -431,6 +431,36 @@ header {
     }
 }
 
+.bong-bg {
+	background: $color-bong-bg;
+    &::after {
+        @include background(linear-gradient(to top, $color-bong-bg, rgba($color-bong-bg, 0)));
+    }
+}
+
+.philo-bg {
+	background: $color-philo-bg;
+    &::after {
+        @include background(linear-gradient(to top, $color-philo-bg, rgba($color-philo-bg, 0)));
+    }
+}
+
+.yarko-bg {
+	background: $color-yarko-bg;
+    &::after {
+        @include background(linear-gradient(to top, $color-yarko-bg, rgba($color-philo-bg, 0)));
+    }
+}
+
+
+.marie-bg {
+	background: $color-marie-bg;
+    &::after {
+        @include background(linear-gradient(to top, $color-marie-bg, rgba($color-philo-bg, 0)));
+    }
+}
+
+
 .cd-member-bio-close {
 	width: 32px;
 	height: 32px;
