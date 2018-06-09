@@ -50,7 +50,20 @@ class UberController < ApplicationController
       uberPickupLat = 43.8683646
       uberPickupLon = -78.9346927
     when "4"
-      #Other
+      #Other - lookup place in google places
+      if (params.has_key?(:uberPickupOther) && !params[:uberPickupOther].blank?)
+        puts uberPickupOther
+        locpickup = Uberlocation.new(:address => uberPickupOther)
+        puts locpickup
+        puts locpickup.address
+        locpickup.geocode
+        puts locpickup.latitude
+        puts locpickup.longitude
+        uberPickupLat = locpickup.latitude
+        uberPickupLon = locpickup.longitude
+      else
+        redirect_to '/pages/uber/#error', :flash => { :notice => "Please specify a Destination location." } and return
+      end
     else
       redirect_to '/pages/uber/#error', :flash => { :notice => "Please specify a Pickup location." } and return
     end
@@ -70,7 +83,20 @@ class UberController < ApplicationController
       uberDestinationLat = 43.8683646
       uberDestinationLon = -78.9346927
     when "4"
-      #Other
+      #Other - lookup place in google places
+      if (params.has_key?(:uberDestinationOther) && !params[:uberDestinationOther].blank?)
+        puts uberDestinationOther
+        locdestination = Uberlocation.new(:address => uberDestinationOther)
+        puts locdestination
+        puts locdestination.address
+        locdestination.geocode
+        puts locdestination.latitude
+        puts locdestination.longitude
+        uberDestinationLat = locdestination.latitude
+        uberDestinationLon = locdestination.longitude
+      else
+        redirect_to '/pages/uber/#error', :flash => { :notice => "Please specify a Destination location." } and return
+      end
     else
       redirect_to '/pages/uber/#error', :flash => { :notice => "Please specify a Destination location." } and return
     end

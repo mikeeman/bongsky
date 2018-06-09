@@ -592,6 +592,7 @@ GEM
       multipart-post (>= 1.2, < 3)
     ffi (1.9.18)
     ffi (1.9.18-x86-mingw32)
+    geocoder (1.4.9)
     globalid (0.4.1)
       activesupport (>= 4.2.0)
     gmaps4rails (2.1.2)
@@ -710,6 +711,7 @@ DEPENDENCIES
   byebug
   coffee-rails (~> 4.2)
   execjs
+  geocoder
   gmaps4rails
   high_voltage
   jbuilder (~> 2.5)
@@ -727,4 +729,4 @@ DEPENDENCIES
   web-console (>= 3.3.0)
 
 BUNDLED WITH
-   1.16.0.pre.2
+   1.16.2

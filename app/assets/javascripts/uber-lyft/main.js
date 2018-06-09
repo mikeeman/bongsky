@@ -46,11 +46,13 @@ jQuery(document).ready(function($){
 	}
 
 	function add_uber_pickup() {
-	    $("#uber-pickup-other").append("<div class='icon'><label class='cd-label' for='uber-pickup' id='uber-pickup-input'>Pickup</label> <input class='user' type='text' name='uberPickupOther' id='uber-pickup-input'></div>");
+	    $("#uber-pickup-other").append("<div class='icon'><label class='cd-label' for='uber-pickup' id='uber-pickup-label'>Pickup Address</label> <input class='user' type='text' name='uberPickupOther' id='uber-pickup-input' placeholder=''></div>");
+	    $("#uber-pickup-input").geocomplete();
     }
 
     function add_uber_destination() {
-	    $("#uber-destination-other").append("<div class='icon'><label class='cd-label' for='uber-destination-input' id='uber-destination-label'>Destination</label> <input class='user' type='text' name='uberDestinationOther' id='uber-destination-input'></div>");
+	    $("#uber-destination-other").append("<div class='icon'><label class='cd-label' for='uber-destination-input' id='uber-destination-label'>Destination Address</label> <input class='user' type='text' name='uberDestinationOther' id='uber-destination-input' placeholder=''></div>");
+        $("#uber-destination-input").geocomplete();
     }
 
     function remove_uber_pickup() {

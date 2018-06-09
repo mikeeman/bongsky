@@ -25,6 +25,9 @@ Rails.application.configure do
 
   # Do not fallback to assets pipeline if a precompiled asset is missed.
   config.assets.compile = false
+  
+  # https://github.com/thoughtbot/neat/issues/93
+  #config.assets.precompile << /(^[^_\/]|\/[^_])[^\/]*$/
 
   # `config.assets.precompile` and `config.assets.version` have moved to config/initializers/assets.rb
 

@@ -21,3 +21,4 @@
 //= require side-bio/main
 //= require timeline/main
 //= require uber-lyft/main
+//= require uber-lyft/geocomplete
