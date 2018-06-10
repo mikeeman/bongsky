@@ -252,7 +252,7 @@ header {
 
 	@include MQ(M) {
 		li {
-			@include column(.31);
+			@include column(.465);
 			margin-right: 3.5%;
 
 			&:nth-child(3n) {
