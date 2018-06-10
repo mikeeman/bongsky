@@ -52,13 +52,13 @@ class UberController < ApplicationController
     when "4"
       #Other - lookup place in google places
       if (params.has_key?(:uberPickupOther) && !params[:uberPickupOther].blank?)
-        puts uberPickupOther
+        #puts uberPickupOther
         locpickup = Uberlocation.new(:address => uberPickupOther)
-        puts locpickup
-        puts locpickup.address
+        #puts locpickup
+        #puts locpickup.address
         locpickup.geocode
-        puts locpickup.latitude
-        puts locpickup.longitude
+        #puts locpickup.latitude
+        #puts locpickup.longitude
         uberPickupLat = locpickup.latitude
         uberPickupLon = locpickup.longitude
       else
@@ -85,13 +85,13 @@ class UberController < ApplicationController
     when "4"
       #Other - lookup place in google places
       if (params.has_key?(:uberDestinationOther) && !params[:uberDestinationOther].blank?)
-        puts uberDestinationOther
+        #puts uberDestinationOther
         locdestination = Uberlocation.new(:address => uberDestinationOther)
-        puts locdestination
-        puts locdestination.address
+        #puts locdestination
+        #puts locdestination.address
         locdestination.geocode
-        puts locdestination.latitude
-        puts locdestination.longitude
+        #puts locdestination.latitude
+        #puts locdestination.longitude
         uberDestinationLat = locdestination.latitude
         uberDestinationLon = locdestination.longitude
       else
@@ -116,6 +116,7 @@ class UberController < ApplicationController
     JSON.parse(price).each do |option|
       if (option['display_name'] == 'UberX')
         @uberprice = option['estimate']
+        @uberpriceexists = true
       end
     end
     
@@ -128,8 +129,11 @@ class UberController < ApplicationController
     print @uberprice
     print @uberwaittime
 
-    redirect_to '/pages/uber/#calculated', :flash => { :notice => "Your uber will cost " + @uberprice}
-
+    if (@uberpriceexists == true)
+      redirect_to '/pages/uber/#calculated', :flash => { :notice => "Your uber will cost " + @uberprice} and return
+    else
+      redirect_to '/pages/uber/#error', :flash => { :notice => "Unfortunately, your destination is too far away from the pickup point." } and return
+    end
   end
 
 end
