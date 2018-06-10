@@ -34,6 +34,7 @@ jQuery(document).ready(function($){
 
 	function add_fields() {
 	    $("#guest-fields").append("<div class='icon'><label class='cd-label' for='guest-name" + NUM_GUESTS + "' id='guest-label" + NUM_GUESTS + "'>Guest Name</label> <input class='user' type='text' name='guest" + NUM_GUESTS + "' id='guest-name" + NUM_GUESTS + "'></div>");
+	    $("#guest-fields").append("<div><ul class='cd-form-list'><li><input type='checkbox' id='cb-vegetarian-guest" + NUM_GUESTS + "' name='vegetarianguest" + NUM_GUESTS + "'><label for='cb-vegetarian-guest" + NUM_GUESTS + "'>Sign me up for a vegetarian meal</label></li></ul></div>");
     }
 
 });

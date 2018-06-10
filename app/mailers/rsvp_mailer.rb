@@ -2,12 +2,13 @@ class RsvpMailer < ApplicationMailer
 
     default from: 'bongskyweds@gmail.com'
 
-	def rsvp_email(name = 'not provided', email = 'not provided', attending = -1, guests = '', error = '')
-		@name      = name
-		@email     = email
-		@attending = attending
-		@guests    = guests
-		@error     = error
+	def rsvp_email(name = 'not provided', email = 'not provided', attending = -1, guests = '', vegetarians = '', error = '')
+		@name        = name
+		@email       = email
+		@attending   = attending
+		@guests      = guests
+		@vegetarians = vegetarians
+		@error       = error
 		if(@attending == true)
 			@subjectString = 'RSVP: ' + name + ' is attending!'
 		elsif(@attending == false)

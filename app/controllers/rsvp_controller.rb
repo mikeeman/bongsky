@@ -1,6 +1,7 @@
 class RsvpController < ApplicationController
 	def send(variable)
-
+      
+      @vegetarians = ""
       @guests = ""
 
   	  if(params.has_key?(:name))
@@ -15,6 +16,12 @@ class RsvpController < ApplicationController
         end
   	  end
 
+      if(params.has_key?(:vegetarian))
+        @vegetarians += "1"
+      else
+        @vegetarians += "0"
+      end
+
       if(params.has_key?(:email))
       	@email = params[:email]
       end
@@ -25,42 +32,92 @@ class RsvpController < ApplicationController
 
   	  if(params.has_key?(:guest1))
   	  	@guests += params[:guest1]
+        if (params.has_key?(:vegetarianguest1))
+          @vegetarians += ",1"
+        else
+          @vegetarians += ",0"
+        end
   	  end
 
       if(params.has_key?(:guest2) && !params[:guest2].blank?)
         @guests += ", " + params[:guest2]
+        if (params.has_key?(:vegetarianguest2))
+          @vegetarians += ",1"
+        else
+          @vegetarians += ",0"
+        end
       end
 
       if(params.has_key?(:guest3) && !params[:guest3].blank?)
         @guests += ", " + params[:guest3]
+        if (params.has_key?(:vegetarianguest3))
+          @vegetarians += ",1"
+        else
+          @vegetarians += ",0"
+        end
       end
 
       if(params.has_key?(:guest4) && !params[:guest4].blank?)
         @guests += ", " + params[:guest4]
+        if (params.has_key?(:vegetarianguest4))
+          @vegetarians += ",1"
+        else
+          @vegetarians += ",0"
+        end
       end
 
       if(params.has_key?(:guest5) && !params[:guest5].blank?)
         @guests += ", " + params[:guest5]
+        if (params.has_key?(:vegetarianguest5))
+          @vegetarians += ",1"
+        else
+          @vegetarians += ",0"
+        end
       end
 
       if(params.has_key?(:guest6) && !params[:guest6].blank?)
         @guests += ", " + params[:guest6]
+        if (params.has_key?(:vegetarianguest6))
+          @vegetarians += ",1"
+        else
+          @vegetarians += ",0"
+        end
       end
 
       if(params.has_key?(:guest7) && !params[:guest7].blank?)
         @guests += ", " + params[:guest7]
+        if (params.has_key?(:vegetarianguest7))
+          @vegetarians += ",1"
+        else
+          @vegetarians += ",0"
+        end
       end
       
       if(params.has_key?(:guest8) && !params[:guest8].blank?)
         @guests += ", " + params[:guest8]
+        if (params.has_key?(:vegetarianguest8))
+          @vegetarians += ",1"
+        else
+          @vegetarians += ",0"
+        end
       end
 
       if(params.has_key?(:guest9) && !params[:guest9].blank?)
         @guests += ", " + params[:guest9]
+        if (params.has_key?(:vegetarianguest9))
+          @vegetarians += ",1"
+        else
+          @vegetarians += ",0"
+        end
       end
 
       if(params.has_key?(:guest10) && !params[:guest10].blank?)
         @guests += ", " + params[:guest10]
+        if (params.has_key?(:vegetarianguest10))
+          @vegetarians += ",1"
+        else
+          @vegetarians += ",0"
+        end
       end
 
       if(@code.upcase == ENV['RSVP_CODE'])
@@ -74,6 +131,7 @@ class RsvpController < ApplicationController
                   'attending' => @attending ? 1 : 0,
                   'email' => @email,
                   'guests' => @guests,
+                  'vegetarians' => @vegetarians,
                   'timestamp' => @timestamp
                   #t.strftime(“Printed on %m/%d/%Y”) #=> “Printed on 04/09/2003”
                   #t.strftime(“at %I:%M%p”) #=> “at 08:56AM”
@@ -83,6 +141,7 @@ class RsvpController < ApplicationController
                   'name' => @name, 
                   'attending' => @attending ? 1 : 0,
                   'email' => @email,
+                  'vegetarians' => @vegetarians,
                   'timestamp' => @timestamp
                   }
             end
@@ -92,12 +151,14 @@ class RsvpController < ApplicationController
                   'name' => @name, 
                   'attending' => @attending ? 1 : 0,
                   'guests' => @guests,
+                  'vegetarians' => @vegetarians,
                   'timestamp' => @timestamp
                   }
             else
               @itemhash = {
                   'name' => @name, 
                   'attending' => @attending ? 1 : 0,
+                  'vegetarians' => @vegetarians,
                   'timestamp' => @timestamp
                   }
             end
@@ -114,7 +175,7 @@ class RsvpController < ApplicationController
             false
           end
 
-          RsvpMailer.rsvp_email(@name, @email, @attending, @guests).deliver
+          RsvpMailer.rsvp_email(@name, @email, @attending, @guests, @vegetarians).deliver
         else
           if(!@email.blank?)
             if(!@guests.blank?)
@@ -123,6 +184,7 @@ class RsvpController < ApplicationController
                   'attending' => -1,
                   'email' => @email,
                   'guests' => @guests,
+                  'vegetarians' => @vegetarians,
                   'error' => "did not select attending or not attending",
                   'timestamp' => @timestamp
                   }
@@ -131,6 +193,7 @@ class RsvpController < ApplicationController
                   'name' => @name, 
                   'attending' => -1,
                   'email' => @email,
+                  'vegetarians' => @vegetarians,
                   'error' => "did not select attending or not attending",
                   'timestamp' => @timestamp
                   }
@@ -141,6 +204,7 @@ class RsvpController < ApplicationController
                   'name' => @name, 
                   'attending' => -1,
                   'guests' => @guests,
+                  'vegetarians' => @vegetarians,
                   'error' => "did not select attending or not attending",
                   'timestamp' => @timestamp
                   }
@@ -148,6 +212,7 @@ class RsvpController < ApplicationController
               @itemhash = {
                   'name' => @name, 
                   'attending' => -1,
+                  'vegetarians' => @vegetarians,
                   'error' => "did not select attending or not attending",
                   'timestamp' => @timestamp
                   }
@@ -164,7 +229,7 @@ class RsvpController < ApplicationController
             false
           end
 
-          RsvpMailer.rsvp_email(@name, @email, @attending, @guests, "did not select attending or not attending").deliver
+          RsvpMailer.rsvp_email(@name, @email, @attending, @guests, @vegetarians, "did not select attending or not attending").deliver
         end
 
       
@@ -182,7 +247,7 @@ class RsvpController < ApplicationController
     
     else
       #guest has entered incorrect RSVP code
-      RsvpMailer.rsvp_email(@name, @email, @attending, @guests, "entered incorrect rsvp code: " + @code).deliver
+      RsvpMailer.rsvp_email(@name, @email, @attending, @guests, @vegetarians, "entered incorrect rsvp code: " + @code).deliver
       
       redirect_to '/pages/rsvp/#error', :flash => { :notice => "Oops! RSVP Code entered did not match."} and return
     end
