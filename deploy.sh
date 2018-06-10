@@ -3,6 +3,10 @@
 #kill old instance
 read -r processid < ./tmp/pids/server.pid
 kill $processid
+#compile
+bundle install
+#run migrations
+rake db:migrate
 #precompile assets
 rake assets:precompile RAILS_ENV=production
 #start server as a service running in background
