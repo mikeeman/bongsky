@@ -100,40 +100,46 @@ class UberController < ApplicationController
     else
       redirect_to '/pages/uber/#error', :flash => { :notice => "Please specify a Destination location." } and return
     end
-    
-    client = Uber::Client.new do |config|
-      config.server_token  = ENV['UBER_TOKEN']
-    end
-    
-    price = client.price_estimations(start_latitude: uberPickupLat,
-                                     start_longitude: uberPickupLon,
-                                     end_latitude: uberDestinationLat,
-                                     end_longitude: uberDestinationLon).to_json
-    time = client.time_estimations(start_latitude: uberPickupLat,
-                                   start_longitude: uberPickupLon).to_json
-    
 
-    JSON.parse(price).each do |option|
-      if (option['display_name'] == 'UberX')
-        @uberprice = option['estimate']
-        @uberpriceexists = true
-      end
-    end
-    
-    JSON.parse(time).each do |option|
-      if (option['display_name'] == 'UberX')
-        @uberwaittime = option['estimate']
-      end
-    end
-
-    print @uberprice
-    print @uberwaittime
-
-    if (@uberpriceexists == true)
-      redirect_to '/pages/uber/#calculated', :flash => { :notice => "Your uber will cost " + @uberprice} and return
+    if ((uberPickupLat == uberDestinationLat) && (uberPickupLon == uberDestinationLon))
+      redirect_to '/pages/uber/#error', :flash => { :notice => "Please specify a different Pickup and Destination location." } and return
     else
-      redirect_to '/pages/uber/#error', :flash => { :notice => "Unfortunately, your destination is too far away from the pickup point." } and return
+      client = Uber::Client.new do |config|
+        config.server_token  = ENV['UBER_TOKEN']
+      end
+    
+      price = client.price_estimations(start_latitude: uberPickupLat,
+                                       start_longitude: uberPickupLon,
+                                       end_latitude: uberDestinationLat,
+                                       end_longitude: uberDestinationLon).to_json
+      time = client.time_estimations(start_latitude: uberPickupLat,
+                                     start_longitude: uberPickupLon).to_json
+    
+
+      JSON.parse(price).each do |option|
+        if (option['display_name'] == 'UberX')
+          @uberprice = option['estimate']
+          @uberpriceexists = true
+        end
+      end
+    
+      JSON.parse(time).each do |option|
+        if (option['display_name'] == 'UberX')
+          @uberwaittime = option['estimate']
+        end
+      end
+
+      print @uberprice
+      print @uberwaittime
+
+      if (@uberpriceexists == true)
+        redirect_to '/pages/uber/#calculated', :flash => { :notice => "Your uber will cost " + @uberprice} and return
+      else
+        redirect_to '/pages/uber/#error', :flash => { :notice => "Unfortunately, your destination is too far away from the pickup point." } and return
+      end
+
     end
+  
   end
 
 end
