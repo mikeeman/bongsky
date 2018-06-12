@@ -30,7 +30,7 @@ class RsvpController < ApplicationController
         @code = params[:code]
       end
 
-  	  if(params.has_key?(:guest1))
+  	  if(params.has_key?(:guest1) && !params[:guest1].blank?)
   	  	@guests += params[:guest1]
         if (params.has_key?(:vegetarianguest1))
           @vegetarians += ",1"
