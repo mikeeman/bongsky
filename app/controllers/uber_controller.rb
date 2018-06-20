@@ -133,6 +133,44 @@ class UberController < ApplicationController
       print @uberwaittime
 
       if (@uberpriceexists == true)
+        # Save to Dynamo
+        timestamp = Time.now.strftime("%m-%d-%Y %I:%M%p")
+        userIpAddress = request.remote_ip
+        
+        print userIpAddress
+        print uberPickup
+        print uberDestination
+        print uberPickupLat
+        print uberPickupLon
+        print uberDestinationLat
+        print uberDestinationLon
+        print @uberprice
+        print @uberwaittime
+        print timestamp
+        
+        itemhash = {
+                      'ip' => userIpAddress, 
+                      'pickup' => uberPickup,
+                      'destination' => uberDestination,
+                      'pickup_other' => uberPickupOther,
+                      'destination_other' => uberDestinationOther,
+                      'pickup_lat' => uberPickupLat,
+                      'pickup_lon' => uberPickupLon,
+                      'destination_lat' => uberDestinationLat,
+                      'destination_lon' => uberDestinationLon,
+                      'price' => @uberprice,
+                      'wait_time' => @uberwaittime,
+                      'timestamp' => timestamp
+                    }
+        begin
+          resp = $ddb.put_item({
+            table_name: 'bongsky-fare-estimator',
+            item: itemhash
+          })
+          resp.successful?
+        rescue Aws::DynamoDB::Errors::ServiceError => e
+          false
+        end
         redirect_to '/pages/uber/#calculated', :flash => { :notice => "Your uber will cost " + @uberprice} and return
       else
         redirect_to '/pages/uber/#error', :flash => { :notice => "Unfortunately, your destination is too far away from the pickup point." } and return
