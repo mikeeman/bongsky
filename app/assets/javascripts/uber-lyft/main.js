@@ -46,7 +46,7 @@ jQuery(document).ready(function($){
 	}
 
 	function add_uber_pickup() {
-	    $("#uber-pickup-other").append("<div class='icon'><label class='cd-label' for='uber-pickup' id='uber-pickup-label'>Pickup Address</label> <input class='user' type='text' name='uberPickupOther' id='uber-pickup-input' placeholder=''></div>");
+	    $("#uber-pickup-other").append("<div class='icon'><label class='cd-label' for='uber-pickup-input' id='uber-pickup-label'>Pickup Address</label> <input class='user' type='text' name='uberPickupOther' id='uber-pickup-input' placeholder=''></div>");
 	    $("#uber-pickup-input").geocomplete();
     }
 
