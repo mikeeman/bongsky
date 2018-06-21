@@ -57,6 +57,7 @@ class UberController < ApplicationController
         #puts locpickup
         #puts locpickup.address
         locpickup.geocode
+        locpickup.save
         #puts locpickup.latitude
         #puts locpickup.longitude
         uberPickupLat = locpickup.latitude
@@ -90,6 +91,7 @@ class UberController < ApplicationController
         #puts locdestination
         #puts locdestination.address
         locdestination.geocode
+        locdestination.save
         #puts locdestination.latitude
         #puts locdestination.longitude
         uberDestinationLat = locdestination.latitude
