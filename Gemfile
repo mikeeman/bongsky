@@ -67,3 +67,5 @@ gem 'aws-sdk'
 gem 'uber-ruby', require: 'uber'
 
 gem 'geocoder'
+
+gem 'rack-attack'
