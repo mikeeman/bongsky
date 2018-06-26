@@ -19,6 +19,9 @@ Rack::Attack.blocklist_ip("141.212.122.144")
 Rack::Attack.blocklist_ip("34.201.223.224")
 Rack::Attack.blocklist_ip("46.161.27.210")
 Rack::Attack.blocklist_ip("66.249.66.77")
+Rack::Attack.blocklist_ip("189.39.117.66")
+Rack::Attack.blocklist_ip("179.108.39.81")
+Rack::Attack.blocklist_ip("183.185.136.156")
 
 ### Configure Cache ###
 
