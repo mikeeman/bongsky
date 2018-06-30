@@ -24,6 +24,11 @@
     transform: translate(-50%, -50%);
 }
 
+.p-centered-main {
+	@extend .p-centered;
+	width: 800px;
+}
+
 .smalls {
 	width: 100%;
 }
@@ -32,14 +37,14 @@
 
 @media screen and (min-width: 1200px) {
 	.card a {
-	    font-size: 4.5em;
+	    font-size: 3.0em;
 	    line-height: 0.8;
 	}
 }
 
 @media screen and (min-width: 992px) and (max-width: 1199px) {
 	.card a {
-	    font-size: 3.5em;
+	    font-size: 3.0em;
 	    line-height: 0.85;
 	}
 }

@@ -136,6 +136,19 @@ img {
   font-size: 16px!important;
 }
 
+.bongsky-p-date {
+  @extend .bongsky-p;
+  color: #a9a9a9;
+  font-size: 12px!important;
+  text-align: left;
+}
+
+.bongsky-p-updates {
+  @extend .bongsky-p;
+  text-align: left;
+  line-height: 1.0!important;
+}
+
 .map-icon-link-div {
   width: 200px;
 }
