@@ -1,0 +1,26 @@
+<% content_for :title do %>UPLOADS<% end %>
+
+<div class="jumbotron">
+    <h1 class="bongsky-title">Uploads</h1>
+
+    <p class="bongsky-p">
+      We would love it if you uploaded any images you took at the wedding!
+    </p>
+
+    <form class="cd-form floating-labels" action="/pages/uploads/send" method="get">
+    <fieldset>
+      <div style="text-align: center;">
+        <input type="submit" value="Find My Pics">
+      </div>
+    </fieldset>
+
+    <div class="browse-container">
+      <div class="browse">
+        click here to browse
+      </div>
+      <input class="browse-input" id="files" multiple="true" name="files[]" type="file" />
+    </div>
+
+</div>
+
+<%= javascript_include_tag 'uploads/uploads' %>

@@ -69,3 +69,5 @@ gem 'uber-ruby', require: 'uber'
 gem 'geocoder'
 
 gem 'rack-attack'
+
+gem 'carrierwave', '~> 1.0'
