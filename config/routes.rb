@@ -6,6 +6,8 @@ Rails.application.routes.draw do
 
   post 'pages/uber/send' => 'uber#send'
 
+  post 'pages/uploads/send' => 'uploads#send'
+
   root to: 'visitors#index'
 
 end
