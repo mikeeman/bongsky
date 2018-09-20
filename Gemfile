@@ -70,4 +70,4 @@ gem 'geocoder'
 
 gem 'rack-attack'
 
-gem 'carrierwave', '~> 1.0'
+gem 'carrierwave', github: 'carrierwaveuploader/carrierwave'

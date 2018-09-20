@@ -13,7 +13,7 @@
           <div class="browse">
             click here to browse
           </div>
-          <input class="browse-input" id="up-files" multiple="true" name="images" type="file" />
+          <input class="browse-input" id="up-files" multiple="true" name="photos[]" type="file" />
         </div>
 
         <div>
@@ -31,4 +31,11 @@
       </fieldset>
     </form>
 
+
+    <%= form_for @u, url: {action: "/pages/uploads/send"}, html: {class: "nifty_form"} do |f| %>
+      <%= f.label :photos %>
+      <%= f.file_field :photos, multiple: true %>
+      <%= f.submit "send" %>
+    <% end %>
+            
 </div>
