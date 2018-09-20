@@ -27,3 +27,6 @@ app/views/visitors/old_index.html.erb
 
 # Ignore precompiled assets
 public/assets
+
+# Ignore uploads directory from carrierwave
+public/uploads

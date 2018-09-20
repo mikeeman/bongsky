@@ -8,19 +8,27 @@
     </p>
 
     <form class="cd-form floating-labels" action="/pages/uploads/send" method="get">
-    <fieldset>
-      <div style="text-align: center;">
-        <input type="submit" value="Find My Pics">
-      </div>
-    </fieldset>
+      <fieldset>
+        <div class="browse-container">
+          <div class="browse">
+            click here to browse
+          </div>
+          <input class="browse-input" id="up-files" multiple="true" name="images" type="file" />
+        </div>
 
-    <div class="browse-container">
-      <div class="browse">
-        click here to browse
-      </div>
-      <input class="browse-input" id="files" multiple="true" name="files[]" type="file" />
-    </div>
+        <div>
+          <ul class="cd-form-list">
+            <li>
+              <input type="checkbox" id="cb-public" name="public">
+              <label for="cb-public">Share below?</label>
+            </li>
+          </ul>
+        </div>
+
+        <div style="text-align: center;">
+          <input type="submit" value="Upload">
+        </div>
+      </fieldset>
+    </form>
 
 </div>
-
-<%= javascript_include_tag 'uploads/uploads' %>
