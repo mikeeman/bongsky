@@ -30,3 +30,6 @@ public/assets
 
 # Ignore uploads directory from carrierwave
 public/uploads
+
+# Ignore google drive service account file
+Bongsky-7e6535f5a806.json
