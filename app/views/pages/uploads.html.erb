@@ -7,16 +7,16 @@
       We would love it if you uploaded any images you took at the wedding!
     </p>
 
-    <form class="cd-form floating-labels" action="/pages/uploads/send" method="post">
+    <form class="cd-form floating-labels" action="/pages/uploads/send" method="post" enctype="multipart/form-data">
       <fieldset>
-        <div class="browse-container">
+        <div class="browse-container" style="text-align: center;margin: auto;">
           <div class="browse">
             click here to browse
           </div>
           <input class="browse-input" id="up-files" multiple="true" name="photos[]" type="file" />
         </div>
 
-        <div>
+        <div style="text-align: center;">
           <ul class="cd-form-list">
             <li>
               <input type="checkbox" id="cb-public" name="public">
@@ -30,12 +30,5 @@
         </div>
       </fieldset>
     </form>
-
-
-    <%= form_for @u, url: {action: "/pages/uploads/send"}, html: {class: "nifty_form"} do |f| %>
-      <%= f.label :photos %>
-      <%= f.file_field :photos, multiple: true %>
-      <%= f.submit "send" %>
-    <% end %>
             
 </div>

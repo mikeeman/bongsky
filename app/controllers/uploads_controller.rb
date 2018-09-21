@@ -35,26 +35,26 @@ class UploadsController < ApplicationController
             #end	    	
 
 
-	    	@u = Upload.new(params[:photos])
-	    	@u.public = true
-	    	@u.ip = request.remote_ip
+	    	u = Upload.new
+	    	u.public = allowPublic
+	    	u.ip = request.remote_ip
 
 	        print "======================"
-	        print @u
-	    	print @u.public
-	    	print @u.photos
+	        print u
+	    	print u.public
+	    	print u.photos
 	        print params[:photos]
 	        #print params[:photos].map
 	        #print params[:photos].map.with_index
-	    	print @u.ip
+	    	print u.ip
 
-	        @u.photos = params[:photos]
+	        u.photos = params[:photos]
 
 
-	        print @u.photos
+	        print u.photos
 	        print "======================"
 
-            @u.save!
+            u.save!
 
 	        if (allowPublic)
 	  	        redirect_to '/pages/uploads/#sent', :flash => { :notice => "Thanks for the pics, feel free to upload some more!" } and return
