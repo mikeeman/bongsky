@@ -12,7 +12,7 @@ class UploadsController < ApplicationController
 	    print folder
 	    print folder
 	    print "-=-=-=-=-=-=-=-=-=-=-="
-        folder.add(@session.upload_from_file(path, file, convert: false)) 
+        #folder.add(@session.upload_from_file(path, file, convert: false)) 
     end
 
     def send(variable)
