@@ -16,10 +16,12 @@
           <input class="browse-input" id="up-files" multiple="true" name="photos[]" type="file" accept="image/*" />
         </div>
 
+        <div id="previewList" style="text-align: center;"></div>
+
         <div style="text-align: center;">
           <ul class="cd-form-list">
             <li>
-              <input type="checkbox" id="cb-public" name="public">
+              <input type="checkbox" id="cb-public" name="public" checked>
               <label for="cb-public">Share below?</label>
               <input type="submit" value="Upload" style="padding: 7px 20px;margin-left: 5px;">
             </li>
@@ -28,5 +30,16 @@
 
       </fieldset>
     </form>
+
+    <div id="publicList" style="text-align: center;"></div>
+
+    <div>
+        <p>
+            <%= controller.controller_name %>
+            <%= controller.action_name %>
+        </p>
+    </div>
             
 </div>
+
+<%= javascript_include_tag 'uploads/uploads' %>

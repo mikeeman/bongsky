@@ -1,7 +1,14 @@
 require "google_drive"
 
 class UploadsController < ApplicationController
-    
+
+    def show
+    	print "-=-=-=-=-=-=-=-=-=-=-=-=-= ENTERING SHOW"
+    	@uploads = Upload.all
+        print @uploads.count
+        print "EXITING SHOW-=-=-=-=-=-=-=-=-=-=-=-=-="
+    end
+
     def upload_to_drive(id, file, folder_code)
         folder = @session.collection_by_title("#{folder_code}")
         path = Rails.root.join('public', 'uploads', "#{id}", "#{file}")

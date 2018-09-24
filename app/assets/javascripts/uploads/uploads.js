@@ -7,7 +7,7 @@
 
 jQuery(document).ready(function($){
     //$("#uploadForm").hide();
-    var drop = $("input");
+    /*var drop = $("input");
     drop
         .on("dragenter", function(e) {
         $(".drop").css({
@@ -26,10 +26,15 @@ jQuery(document).ready(function($){
         $(".cont").css({
           color: "#8E99A5"
         });
-    });
+    });*/
+
+    //populate all images on page load
+    $("#publicList").append('<img src="/uploads/43/Desert.jpg">');
 
     function handleFileSelect(evt) {
       var files = evt.target.files; // FileList object
+
+      $("#previewList").empty(); // Clear the existing preview files
 
       // Loop through the FileList and render image files as thumbnails.
       for (var i = 0, f; (f = files[i]); i++) {
@@ -44,17 +49,18 @@ jQuery(document).ready(function($){
         reader.onload = (function(theFile) {
           return function(e) {
             // Render thumbnail.
-            var span = document.createElement("span");
+            //var span = document.createElement("span");
             console.log(e.target.result);
             console.log(theFile);
-            span.innerHTML = [
-              '<img class="thumb" src="',
-              e.target.result,
-              '" title="',
-              escape(theFile.name),
-              '" style="display: inline;"/>'
-            ].join("");
-            document.getElementById("list").insertBefore(span, null);
+            //span.innerHTML = [
+            //  '<img class="thumb" src="',
+            //  e.target.result,
+            //  '" title="',
+            //  escape(theFile.name),
+            //  '" style="display: inline;"/>'
+            //].join("");
+            //$("#previewList").insertBefore(span, null);
+            $("#previewList").append('<img class="thumb" src="' + e.target.result + '" title="' + escape(theFile.name) + '" style="display:inline;">');
           };
         })(f);
 
@@ -70,5 +76,5 @@ jQuery(document).ready(function($){
       }
     }
 
-    $("#files").change(handleFileSelect);
+    $("#up-files").change(handleFileSelect);
 });

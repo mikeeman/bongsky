@@ -22,3 +22,4 @@
 //= require timeline/main
 //= require uber-lyft/main
 //= require uber-lyft/geocomplete
+//= require uploads/uploads
