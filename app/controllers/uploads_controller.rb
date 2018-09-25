@@ -1,6 +1,8 @@
 require "google_drive"
 
-class UploadsController < ApplicationController
+class UploadsController < ActionController::Base
+
+    include HighVoltage::StaticPage
 
     def show
     	print "-=-=-=-=-=-=-=-=-=-=-=-=-= ENTERING SHOW"

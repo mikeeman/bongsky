@@ -29,7 +29,7 @@ jQuery(document).ready(function($){
     });*/
 
     //populate all images on page load
-    $("#publicList").append('<img src="/uploads/43/Desert.jpg">');
+    //$("#publicList").append('<img src="/uploads/43/Desert.jpg">');
 
     function handleFileSelect(evt) {
       var files = evt.target.files; // FileList object

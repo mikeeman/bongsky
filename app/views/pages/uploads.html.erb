@@ -31,13 +31,12 @@
       </fieldset>
     </form>
 
-    <div id="publicList" style="text-align: center;"></div>
-
-    <div>
-        <p>
-            <%= controller.controller_name %>
-            <%= controller.action_name %>
-        </p>
+    <div style="text-align: center;">
+        <% @uploads.each do |upload| %>
+            <% upload.photos.each do |photo| %>
+                <%= image_tag(photo.url, class: "publicthumb") %>
+            <% end %>
+        <% end %>
     </div>
             
 </div>

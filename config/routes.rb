@@ -8,6 +8,8 @@ Rails.application.routes.draw do
 
   post 'pages/uploads/send' => 'uploads#send'
 
+  get 'pages/uploads' => 'pages#show'
+
   root to: 'visitors#index'
 
 end
