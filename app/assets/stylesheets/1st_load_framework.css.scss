@@ -112,6 +112,12 @@ img {
   display: table;
 }
 
+.publicthumb {
+  @extend .img-responsive;
+
+  max-height: 300px;
+}
+
 /////////////all pages/////////////////
 
 .jumbotron {

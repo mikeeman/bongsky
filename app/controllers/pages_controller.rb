@@ -2,13 +2,19 @@ class PagesController < ActionController::Base
     include HighVoltage::StaticPage
 
     def show
-    	print "-=-=-=-=-=-=-=-=-=-=-=-=-= ENTERING SHOW"
-    	@uploads = Upload.
+    	@photo_url_list = []
+
+    	uploads = Upload.
     	               where(public: true).
     	               where.not(photos: [nil, ""]).
     	               order("created_at DESC")
-        print @uploads.count
-        print "EXITING SHOW-=-=-=-=-=-=-=-=-=-=-=-=-="
+    	
+    	uploads.each do |upload|
+    		upload.photos.each do |photo|
+                @photo_url_list.push( photo.url )
+            end
+    	end
+
         render 'uploads'
     end
 

@@ -31,11 +31,28 @@
       </fieldset>
     </form>
 
-    <div style="text-align: center;">
-        <% @uploads.each do |upload| %>
-            <% upload.photos.each do |photo| %>
-                <%= image_tag(photo.url, class: "publicthumb") %>
-            <% end %>
+    <div class="container" style="margin-top: 52px; padding-left: 1px; padding-right: 1px;">
+        <% @photo_url_list.each_slice(3) do |photo| %>
+
+            <section class="cards smalls">    
+                
+                <article class="card small frontLeft">
+                    <%= image_tag(photo[0], class: "publicthumb") %>
+                </article><!-- .card -->
+                
+                <% if (photo.length > 1) %>
+                    <article class="card small frontMiddle">
+                        <%= image_tag(photo[1], class: "publicthumb") %>
+                    </article><!-- .card -->
+                <% end %>
+                
+                <% if (photo.length > 2) %>
+                    <article class="card small frontRight">
+                        <%= image_tag(photo[2], class: "publicthumb") %>
+                    </article><!-- .card -->
+                <% end %>
+
+            </section><!-- .cards 2nd row 3 pics-->
         <% end %>
     </div>
             
