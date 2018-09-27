@@ -2,17 +2,30 @@ require "google_drive"
 
 class UploadsController < ActionController::Base
 
-    def upload_to_drive(id, file, folder_code)
-        folder = @session.collection_by_title("#{folder_code}")
-        path = Rails.root.join('public', 'uploads', "#{id}", "#{file}")
-        print "-=-=-=-=-=-=-=-=-=-=-="
-	    print path
-	    print file
-	    print folder_code
+    def upload_to_drive(fullpath, file, folder_code)
+        #folder = @session.collection_by_title(folder_code) #currently nil
+        folder = @session.collection_by_title("bongskywedsuploads")
+        #path = Rails.root.join('public', "#{url}")
+        #path = Rails.root.join('public', url).to_s
+        print "*****-=-=-=-=-=-=-=-=-=-=-="
+        print "file: "
+        print file
+        print ", folder_code: "
+        print folder_code
+        print ", fullpath: "
+	    print fullpath
+	    print ", folder: "
 	    print folder
-	    print folder
-	    print "-=-=-=-=-=-=-=-=-=-=-="
-        #folder.add(@session.upload_from_file(path, file, convert: false)) 
+	    print "-=-=-=-=-=-=-=-=-=-=-=*****"
+	    #currently invalid path, works if use full escaped string
+        folder.add(@session.upload_from_file(fullpath, file, convert: false))
+        #@session.upload_from_file(fullpath, file, convert: false)
+        #cannot add to folder because folder is nil
+        
+        #remoteFile = @session.file_by_title(file)
+        #remoteFile.acl.push({type: "user", email_address: "bongskyweds@gmail.com", role: "writer"}, {send_notification_email: true})
+        
+        # sends email and shares at root folder (not shared folder)
     end
 
     def send(variable)
@@ -32,58 +45,26 @@ class UploadsController < ActionController::Base
 	    end
 
 	    if(hasImages)
-	    	#u = Upload.new(photos: Hash[params[:photos].map.with_index.to_a])
-	    	
-	    	#params[:photos].key_value do |key, value|
-            #    u = Upload.new
-            #    u.public = allowPublic
-            #    u.ip = request.remote_ip
-                
-            #    print "=============="
-            #    print key
-            #    print value
-            #    print u.public
-                #u.photos = "{" + photo + "}"
-            #    print u.photos
-            #    print u.ip
-            #    print "=============="
-            #    u.save!
-            #end	    	
-
-
 	    	u = Upload.new
 	    	u.public = allowPublic
 	    	u.ip = request.remote_ip
-
-	        print "======================"
-	        print u
-	    	print u.public
-	    	print u.photos
-	        print params[:photos]
-	        #print params[:photos].map
-	        #print params[:photos].map.with_index
-	    	print u.ip
-
-	        u.photos = params[:photos]
-
-	        print u.photos
-	        print "======================"
+	    	u.photos = params[:photos]
+            u.save!
 
             @session = GoogleDrive::Session.from_service_account_key(ENV['GOOGLE_DRIVE_SERVICE_ACCOUNT'])
 
-	        u.photos.each do |photo|
+            lastUpload = Upload.last
+
+	        lastUpload.photos.each do |photo|
 	        	print "-=-=-=-=-=-=-=-=-=-=-="
-	        	print u.id
+	        	print lastUpload.id
 	            print "-=-=-=-=-=-=-=-=-=-=-="
-	            print photo.identifier
+	            print photo.path
 	            print "-=-=-=-=-=-=-=-=-=-=-="
 
-	        	upload_to_drive(u.id, photo.identifier, ENV['BONGSKY_UPLOADS_FOLDER_CODE'])
+	        	upload_to_drive(photo.path, File.basename(photo.url), ENV['BONGSKY_UPLOADS_FOLDER_CODE'])
 	        	#session.upload_from_file(photo.url, photo.identifier, convert: false)
             end
-
-
-            u.save!
 
 			
 
