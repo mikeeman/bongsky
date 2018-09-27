@@ -51,19 +51,23 @@ class UploadsController < ActionController::Base
 	    	u.photos = params[:photos]
             u.save!
 
-            @session = GoogleDrive::Session.from_service_account_key(ENV['GOOGLE_DRIVE_SERVICE_ACCOUNT'])
+            Thread.new do
 
-            lastUpload = Upload.last
+                @session = GoogleDrive::Session.from_service_account_key(ENV['GOOGLE_DRIVE_SERVICE_ACCOUNT'])
 
-	        lastUpload.photos.each do |photo|
-	        	print "-=-=-=-=-=-=-=-=-=-=-="
-	        	print lastUpload.id
-	            print "-=-=-=-=-=-=-=-=-=-=-="
-	            print photo.path
-	            print "-=-=-=-=-=-=-=-=-=-=-="
+                lastUpload = Upload.last
 
-	        	upload_to_drive(photo.path, File.basename(photo.url), ENV['BONGSKY_UPLOADS_FOLDER_CODE'])
-	        	#session.upload_from_file(photo.url, photo.identifier, convert: false)
+	            lastUpload.photos.each do |photo|
+	        	    print "-=-=-=-=-=-=-=-=-=-=-="
+	        	    print lastUpload.id
+	                print "-=-=-=-=-=-=-=-=-=-=-="
+	                print photo.path
+	                print "-=-=-=-=-=-=-=-=-=-=-="
+
+	        	    upload_to_drive(photo.path, File.basename(photo.url), ENV['BONGSKY_UPLOADS_FOLDER_CODE'])
+	        	    #session.upload_from_file(photo.url, photo.identifier, convert: false)
+                end
+                
             end
 
 			
