@@ -70,6 +70,7 @@ gem 'geocoder'
 
 gem 'rack-attack'
 
+gem 'mini_magick' # Requires ImageMagick to be installed on host with PATH set WITH TRAILING SLASH!
 gem 'carrierwave', '~> 1.0'
 
 gem 'google_drive'

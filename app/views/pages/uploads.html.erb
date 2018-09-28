@@ -37,18 +37,18 @@
             <section class="cards smalls">    
                 
                 <article class="card small frontLeft">
-                    <%= image_tag(photo[0], class: "publicthumb") %>
+                    <%= link_to image_tag(photo[0], class: "publicthumb"), photo[0] %>
                 </article><!-- .card -->
                 
                 <% if (photo.length > 1) %>
                     <article class="card small frontMiddle">
-                        <%= image_tag(photo[1], class: "publicthumb") %>
+                        <%= link_to image_tag(photo[1], class: "publicthumb"), photo[1] %>
                     </article><!-- .card -->
                 <% end %>
                 
                 <% if (photo.length > 2) %>
                     <article class="card small frontRight">
-                        <%= image_tag(photo[2], class: "publicthumb") %>
+                        <%= link_to image_tag(photo[2], class: "publicthumb"), photo[2] %>
                     </article><!-- .card -->
                 <% end %>
 
