@@ -2,16 +2,16 @@ class PagesController < ActionController::Base
     include HighVoltage::StaticPage
 
     def show
-    	@photo_url_list = []
+    	@thumbnail_url_list = []
 
     	uploads = Upload.
     	               where(public: true).
-    	               where.not(photos: [nil, ""]).
+    	               where.not(thumbnails: [nil, ""]).
     	               order("created_at DESC")
     	
     	uploads.each do |upload|
-    		upload.photos.each do |photo|
-                @photo_url_list.push( photo.url )
+    		upload.thumbnails.each do |thumbnail|
+                @thumbnail_url_list.push( thumbnail.url )
             end
     	end
 

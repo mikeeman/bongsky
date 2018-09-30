@@ -2,25 +2,9 @@ require "google_drive"
 
 class UploadsController < ActionController::Base
 
-    def upload_to_drive(fullpath, file, folder_code)
-        #folder = @session.collection_by_title(folder_code) #currently nil
-        folder = @session.collection_by_title("bongskywedsuploads")
-        #path = Rails.root.join('public', "#{url}")
-        #path = Rails.root.join('public', url).to_s
-        print "*****-=-=-=-=-=-=-=-=-=-=-="
-        print "file: "
-        print file
-        print ", folder_code: "
-        print folder_code
-        print ", fullpath: "
-	    print fullpath
-	    print ", folder: "
-	    print folder
-	    print "-=-=-=-=-=-=-=-=-=-=-=*****"
-	    #currently invalid path, works if use full escaped string
+    def upload_to_drive(fullpath, file, folder_name)
+        folder = @session.collection_by_title(folder_name)
         folder.add(@session.upload_from_file(fullpath, file, convert: false))
-        #@session.upload_from_file(fullpath, file, convert: false)
-        #cannot add to folder because folder is nil
         
         #remoteFile = @session.file_by_title(file)
         #remoteFile.acl.push({type: "user", email_address: "bongskyweds@gmail.com", role: "writer"}, {send_notification_email: true})
@@ -49,29 +33,16 @@ class UploadsController < ActionController::Base
 	    	u.public = allowPublic
 	    	u.ip = request.remote_ip
 	    	u.photos = params[:photos]
+	    	u.thumbnails = params[:photos]
             u.save!
 
             Thread.new do
-
                 @session = GoogleDrive::Session.from_service_account_key(ENV['GOOGLE_DRIVE_SERVICE_ACCOUNT'])
-
                 lastUpload = Upload.last
-
 	            lastUpload.photos.each do |photo|
-	        	    print "-=-=-=-=-=-=-=-=-=-=-="
-	        	    print lastUpload.id
-	                print "-=-=-=-=-=-=-=-=-=-=-="
-	                print photo.path
-	                print "-=-=-=-=-=-=-=-=-=-=-="
-
-	        	    upload_to_drive(photo.path, File.basename(photo.url), ENV['BONGSKY_UPLOADS_FOLDER_CODE'])
-	        	    #session.upload_from_file(photo.url, photo.identifier, convert: false)
-                end
-                
+	        	    upload_to_drive(photo.path, File.basename(photo.url), ENV['BONGSKY_UPLOADS_FOLDER_NAME'])
+                end       
             end
-
-			
-
 
 	        if (allowPublic)
 	  	        redirect_to '/pages/uploads/#sent', :flash => { :notice => "Thanks for the pics, feel free to upload some more!" } and return
