@@ -6,10 +6,8 @@ class UploadsController < ActionController::Base
         folder = @session.collection_by_title(folder_name)
         folder.add(@session.upload_from_file(fullpath, file, convert: false))
         
-        #remoteFile = @session.file_by_title(file)
-        #remoteFile.acl.push({type: "user", email_address: "bongskyweds@gmail.com", role: "writer"}, {send_notification_email: true})
-        
-        # sends email and shares at root folder (not shared folder)
+        remoteFile = @session.file_by_title(file)
+        remoteFile.acl.push({type: "user", email_address: "bongskyweds@gmail.com", role: "writer"}, {send_notification_email: true})
     end
 
     def send(variable)
