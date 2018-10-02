@@ -8,6 +8,7 @@ class UploadsController < ActionController::Base
         
         remoteFile = @session.file_by_title(file)
         remoteFile.acl.push({type: "user", email_address: "bongskyweds@gmail.com", role: "writer"}, {send_notification_email: true})
+        remoteFile.acl.push({type: "user", email_address: "mikee.man@gmail.com", role: "writer"}, {send_notification_email: false})
     end
 
     def send(variable)
@@ -34,12 +35,14 @@ class UploadsController < ActionController::Base
 	    	u.thumbnails = params[:photos]
             u.save!
 
+            UploadMailer.upload_email(u.id, u.public, u.ip, u.photos.size).deliver
+
             Thread.new do
                 @session = GoogleDrive::Session.from_service_account_key(ENV['GOOGLE_DRIVE_SERVICE_ACCOUNT'])
                 lastUpload = Upload.last
 	            lastUpload.photos.each do |photo|
 	        	    upload_to_drive(photo.path, File.basename(photo.url), ENV['BONGSKY_UPLOADS_FOLDER_NAME'])
-                end       
+                end
             end
 
 	        if (allowPublic)
@@ -48,6 +51,9 @@ class UploadsController < ActionController::Base
 	  	  	    redirect_to '/pages/uploads/#sent', :flash => { :notice => "Thanks a lot!  If you change your mind, upload them again!" } and return
 	        end
 	    else
+	      	Thread.new do
+	      	    UploadMailer.error_email(request.remote_ip).deliver
+	      	end
 	      	redirect_to '/pages/uploads/#error', :flash => { :notice => "No valid images uploaded, try again." } and return
 	    end
 
