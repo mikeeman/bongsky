@@ -36,7 +36,9 @@ class UploadsController < ActionController::Base
             u.save!
 
             UploadMailer.upload_email(u.id, u.public, u.ip, u.photos.size).deliver
-
+            
+            print "About to enter thread"
+            
             Thread.new do
             	print "Starting thread"
                 @session = GoogleDrive::Session.from_service_account_key(ENV['GOOGLE_DRIVE_SERVICE_ACCOUNT'])
