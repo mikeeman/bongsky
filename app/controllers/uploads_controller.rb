@@ -38,11 +38,16 @@ class UploadsController < ActionController::Base
             UploadMailer.upload_email(u.id, u.public, u.ip, u.photos.size).deliver
 
             Thread.new do
+            	print "Starting thread"
                 @session = GoogleDrive::Session.from_service_account_key(ENV['GOOGLE_DRIVE_SERVICE_ACCOUNT'])
+                print "Created session"
                 lastUpload = Upload.last
+                print "Found last upload: "
+                print lastUpload.id
 	            lastUpload.photos.each do |photo|
 	        	    upload_to_drive(photo.path, File.basename(photo.url), ENV['BONGSKY_UPLOADS_FOLDER_NAME'])
                 end
+                print "Finished uploading"
             end
 
 	        if (allowPublic)
