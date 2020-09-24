@@ -33,3 +33,9 @@ public/uploads
 
 # Ignore google drive service account file
 Bongsky-7e6535f5a806.json
+
+# Ignore deploy credentials
+deploy_bongskyweds.sh
+
+# Ignore .env files
+.env
