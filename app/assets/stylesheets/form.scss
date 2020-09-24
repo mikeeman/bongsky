@@ -13,7 +13,8 @@ Primary style
 -------------------------------- */
 
 *, *::after, *::before {
-	@include box-sizing(border-box);
+	// @include box-sizing(border-box);
+        box-sizing: border-box;
 }
 
 html {
@@ -86,7 +87,8 @@ Form
 	legend {
 		display: block;
 		width: 100%;
-		@include appearance(none);
+		//@include appearance(none);
+                appearance: none;
 	}
 
 	input[type="text"], 
@@ -147,7 +149,8 @@ Form
 		/* wrapper for radio and checkbox input types */
 		display: inline-block;
 		position: relative;
-		@include user-select(none);
+		//@include user-select(none);
+                user-select: none;
 		margin: 0 26px 16px 0;
 		//float: left;
 	}
@@ -158,7 +161,8 @@ Form
 		position: absolute;
 		left: 0;
 		top: 50%;
-		@include transform(translateY(-50%));
+		//@include transform(translateY(-50%));
+                transform: translateY(-50%);
 		margin: 0;
 		padding: 0;
 		opacity: 0;
@@ -236,7 +240,8 @@ Form
 	input[type="radio"]:checked + label::after,
 	input[type="checkbox"]:checked + label::before,
 	input[type="checkbox"]:checked + label::after {
-		@include animation(cd-bounce .3s);
+	       //	@include animation(cd-bounce .3s);
+               animation: cd-bounce .3s;
 	}
 
 	textarea {
@@ -256,7 +261,8 @@ Form
 		//float: right;
 		cursor: pointer;
 		@include font-smoothing;
-		@include appearance(none);
+		//@include appearance(none);
+                appearance: none;
 
 		.no-touch &:hover {
 			background: lighten($color-2, 20%);
@@ -268,7 +274,8 @@ Form
 		}
 
 		&:active {
-			@include transform(scale(.9));
+			//@include transform(scale(.9));
+                        transform: scale(.9);
 		}
 	}
 
@@ -315,7 +322,7 @@ Form
 	}
 }
 
-@include keyframes(cd-bounce) {
+/* @include keyframes(cd-bounce) {
 	0%, 100% {
 		@include transform(scale(1));
 	}
@@ -323,6 +330,16 @@ Form
 	50% {
 		@include transform(scale(.8));
 	}
+}
+*/
+@keyframes cd-bounce {
+        0%, 100% {
+                transform: scale(1);
+        }
+
+        50% {
+                transform: scale(.8);
+        }
 }
 
 /* -------------------------------- 
@@ -394,7 +411,8 @@ FLoating labels
 		left: 16px;
 		font-size: 1.6rem;
 		cursor: text;
-		@include transition(top .2s, left .2s, font-size .2s);
+		// @include transition(top .2s, left .2s, font-size .2s);
+                transition: top .2s, left .2s, font-size .2s;
 	}
 
 	.icon .cd-label {
